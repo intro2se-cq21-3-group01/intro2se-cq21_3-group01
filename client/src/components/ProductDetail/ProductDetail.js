@@ -17,6 +17,7 @@ const ProductDetail = (props) => {
         };
 
         getProduct();
+        // eslint-disable-next-line
     }, []);
 
     const [count, setCount] = useState(1);
