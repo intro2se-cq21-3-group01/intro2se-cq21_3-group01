@@ -1,5 +1,7 @@
-import React from 'react';
-import styles from './Filter.module.scss';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+import styles from './Filter.module.css';
 
 const Filter = (props) => {
     const {
@@ -11,7 +13,17 @@ const Filter = (props) => {
         handleSortChange,
     } = props;
 
-    const { categories } = props;
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+        const getCategories = async () => {
+            const response = await axios(`http://localhost:8000/api/category`);
+
+            setCategories(response.data.data)
+        }
+
+        getCategories();
+    }, []);
 
     return (
         <div className={styles.filter}>
@@ -31,13 +43,13 @@ const Filter = (props) => {
                 </div>
             </div>
             <div className={styles.category}>
-                <h3>Category</h3>
+                <h4>Category</h4>
                 {categories &&
                     categories.map((category, index) => (
                         <div className={styles['category-row']} key={index}>
                             <div className="form-check">
                                 <input
-                                    className="form-check-input"
+                                    className={`form-check-input ${styles['form-check-input']}`}
                                     type="checkbox"
                                     value=""
                                     id={category.name.toLowerCase()}
@@ -51,7 +63,7 @@ const Filter = (props) => {
                                     {category.name}
                                 </label>
                             </div>
-                            <span className={styles.quantity}>({category.quantity})</span>
+                            {/* <span className={styles.quantity}>({category.quantity})</span> */}
                         </div>
                     ))}
             </div>
@@ -62,7 +74,7 @@ const Filter = (props) => {
                 <input
                     type="range"
                     className="form-range"
-                    id="price"
+                    id={styles.price}
                     max={50}
                     value={inputEnd}
                     onChange={(e) => {

@@ -48,6 +48,10 @@
     white-space: nowrap;
 }
 
+.product-item-name:hover {
+    opacity: 0.7;
+}
+
 .product-item-price {
     color      : #E00000;
     font-family: FOT-MatisseV Pro;

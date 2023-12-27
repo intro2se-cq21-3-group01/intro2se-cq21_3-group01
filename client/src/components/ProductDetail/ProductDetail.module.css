@@ -1,0 +1,98 @@
+* {
+    box-sizing: border-box;
+    margin    : 0;
+    padding   : 0;
+}
+
+.product-container {
+    margin-top: 30px;
+}
+
+.product-img {
+    height       : 500px;
+    width        : 500px;
+    max-width    : 100%;
+    object-fit   : cover;
+    border-radius: 5px;
+    border       : 1px solid black;
+}
+
+.product-name {
+    color               : #000;
+    font-variant-numeric: lining-nums tabular-nums;
+    font-family         : Source Han Serif CN;
+    font-size           : 40px;
+    font-weight         : 700;
+    margin-bottom       : 30px;
+}
+
+.product-price {
+    color               : #E00000;
+    font-variant-numeric: lining-nums tabular-nums;
+    font-family         : FOT-MatisseV Pro;
+    font-size           : 20px;
+    font-weight         : 900;
+    margin-bottom       : 30px;
+}
+
+.product-count {
+    border-radius  : 10px;
+    border         : 1px solid #8A8A8A;
+    background     : #ECECEC;
+    width          : 130px;
+    height         : 45px;
+    margin-bottom  : 30px;
+    display        : flex;
+    justify-content: space-around;
+    align-items    : center;
+}
+
+.add-icon,
+.sub-icon {
+    width           : 30px;
+    height          : 30px;
+    border-radius   : 5px;
+    background-color: #CC8BFF;
+}
+
+.product-count p {
+    margin   : 0;
+    font-size: 20px;
+    color    : #000;
+}
+
+.product-add-cart button {
+    width        : 600px;
+    height       : 60px;
+    border-radius: 10px;
+    border       : 1px solid rgba(255, 0, 0, 0.76);
+    background   : #ECECEC;
+    margin-bottom: 30px;
+}
+
+.product-buy button {
+    width        : 600px;
+    height       : 60px;
+    border-radius: 10px;
+    border       : 1px solid rgba(255, 0, 0, 0.76);
+    background   : #F00;
+    color        : #FFF;
+    font-family  : Inter;
+    font-size    : 20px;
+    font-weight  : 300;
+    margin-bottom: 30px;
+}
+
+.product-des h4 {
+    color      : #000;
+    font-family: Source Han Serif CN;
+    font-size  : 24px;
+    font-weight: 700;
+}
+
+.product-des p {
+    color      : #000;
+    font-family: Inter;
+    font-size  : 14px;
+    font-weight: 400;
+}

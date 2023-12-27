@@ -17,6 +17,25 @@ const productController = {
                 data: []
             });
         }
+    },
+    getProductById: async (req, res) => {
+        try {
+            const id = req.params.id;
+
+            const product = await Product.findById(id);
+
+            res.status(200).json({
+                success: true,
+                message: 'Get product successfully !',
+                data: product
+            });
+        } catch (err) {
+            res.status(500).json({
+                success: false,
+                message: err,
+                data: {}
+            });
+        }
     }
 }
 

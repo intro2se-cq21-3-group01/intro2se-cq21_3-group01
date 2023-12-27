@@ -5,4 +5,7 @@ const router = require("express").Router();
 // GET ALL PRODUCTS
 router.get("/", productController.getAllProducts);
 
+// GET PRODUCT BY ID
+router.get("/:id", productController.getProductById);
+
 module.exports = router;

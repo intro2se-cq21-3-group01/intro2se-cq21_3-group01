@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import ProductItem from "../ProductItem/ProductItem";
 import axios from 'axios';
+
+import ProductItem from "../ProductItem/ProductItem";
 
 const ProductList = (props) => {
     const [products, setProducts] = useState([]);
@@ -39,6 +40,7 @@ const ProductList = (props) => {
             products
             :
             products.filter(product => {
+                product.categories.map(category => console.log(category))
                 return product.categories.some(category => checkedCategories.includes(category));
             });
 
