@@ -6,7 +6,7 @@ import ProductListPage from "./pages/products";
 import RegisterPage from "./pages/register";
 import LoginPage from "./pages/login";
 import ProductPage from "./pages/product";
-import CartPage from "./pages/login copy";
+import CartPage from "./pages/cart";
 
 const App = () => {
   return (

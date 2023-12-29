@@ -1,11 +1,6 @@
-import { useNavigate } from 'react-router-dom';
-
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 import Cart from '../components/Cart/Cart';
-
-import { useAuth } from '../context/AuthContext';
-import { useEffect } from 'react';
 
 const CartPage = () => {
 
