@@ -42,8 +42,8 @@
 
 .product-item-name {
     color      : #667085;
-    font-size  : 20px;
-    font-weight: 700;
+    font-size  : 18px !important;
+    font-weight: 700 !important;
     overflow   : hidden;
     white-space: nowrap;
 }
@@ -55,8 +55,8 @@
 .product-item-price {
     color      : #E00000;
     font-family: FOT-MatisseV Pro;
-    font-size  : 20px;
-    font-weight: 900;
+    font-size  : 17px !important;
+    font-weight: 900 !important;
 }
 
 .product-item-stars {

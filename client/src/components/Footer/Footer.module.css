@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
+
+.footer {
+    background-color: #222222 !important;
+    color           : white !important;
+    margin-top      : 30px !important;
+    padding         : 100px;
+}
+
+.set {
+    display              : grid !important;
+    grid-template-columns: 120px 140px !important;
+    grid-template-rows   : 30px 30px 30px !important;
+}
+
+h6 {
+    font-size  : 0.9rem !important;
+    font-family: 'Quicksand' !important;
+    font-weight: initial !important;
+    margin-left: 10px !important;
+}
+
+h1 {
+    font-family: 'Lobster Two' !important;
+}
+
+.footerSet {
+    display              : grid;
+    grid-template-columns: 60px 60px 60px;
+    grid-template-rows   : 60px 60px 60px;
+    grid-column-gap      : 10px;
+    grid-row-gap         : 10px;
+    margin-bottom        : 20px;
+}
+
+.set3 {
+    width        : 60px;
+    height       : 60px;
+    border-radius: 5px;
+}

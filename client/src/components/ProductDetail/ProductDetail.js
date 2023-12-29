@@ -5,10 +5,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './ProductDetail.module.css';
+import { useCart } from '../../context/CartContext';
 
 const ProductDetail = (props) => {
     const { id } = useParams();
     const [product, setProduct] = useState({});
+
+    const { addToCart } = useCart();
 
     useEffect(() => {
         const getProduct = async () => {
@@ -32,6 +35,13 @@ const ProductDetail = (props) => {
         }
     };
 
+    const handleAddToCart = () => {
+        addToCart({
+            quantity: count,
+            product: product
+        });
+    }
+
     return (
         <div className={styles['product-container']}>
             <div className="container">
@@ -54,7 +64,7 @@ const ProductDetail = (props) => {
                             />
                         </div>
                         <div className={styles['product-add-cart']}>
-                            <button>Add to cart</button>
+                            <button onClick={handleAddToCart}>Add to cart</button>
                         </div>
                         <div className={styles['product-buy']}>
                             <button>Buy now</button>

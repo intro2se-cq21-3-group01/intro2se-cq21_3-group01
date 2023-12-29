@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
+
+* {
+    margin    : 0;
+    padding   : 0;
+    box-sizing: border-box;
+}
+
+.header {
+    padding: 0 !important;
+}
+
+.navbar {
+    background-color: #D9D9D9 !important;
+}
+
+.navbar-brand {
+    font-family: 'Vanity' !important;
+    color      : #5653e8 !important;
+    font-size  : 27px !important;
+    font-weight: 600 !important;
+}
+
+.cart {
+    margin-top : 8px !important;
+    margin-left: 10px !important;
+}
+
+.slice {
+    position        : relative;
+    left            : 0;
+    top             : 10px;
+    width           : 2px;
+    height          : 20px;
+    background-color: #4743F1;
+    display         : block;
+    margin          : 0 15px 0 15px
+}
+
+.count-item {
+    background-color: black;
+    color           : white;
+    border-radius   : 50%;
+    width           : 25px;
+    height          : 25px;
+    text-align      : center;
+}

@@ -40,7 +40,6 @@ const ProductList = (props) => {
             products
             :
             products.filter(product => {
-                product.categories.map(category => console.log(category))
                 return product.categories.some(category => checkedCategories.includes(category));
             });
 

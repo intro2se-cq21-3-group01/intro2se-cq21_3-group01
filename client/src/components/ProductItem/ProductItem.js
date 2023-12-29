@@ -6,11 +6,20 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 
 import styles from './ProductItem.module.css'
+import { useCart } from '../../context/CartContext';
 
 const ProductItem = (props) => {
     const { _id, imgUrl, name, price } = props.product;
     const stars = 5;
 
+    const { addToCart } = useCart();
+
+    const handleAddToCart = () => {
+        addToCart({
+            quantity: 1,
+            product: props.product
+        });
+    }
     return (
         <div className={` ${styles['product-item']} card`}>
             <Link to={`/product/${_id}`}>
@@ -29,9 +38,12 @@ const ProductItem = (props) => {
                         <FontAwesomeIcon key={index} icon={faStar} className={styles['star-icon']} />
                     ))}
                 </div>
-                <a href="/" className={` ${styles['product-item-btn']} btn btn-primary`}>
+                <button
+                    className={` ${styles['product-item-btn']} btn btn-primary`}
+                    onClick={handleAddToCart}
+                >
                     Add to cart
-                </a>
+                </button>
             </div>
         </div>
     );
