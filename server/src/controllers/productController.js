@@ -18,6 +18,30 @@ const productController = {
             });
         }
     },
+    getSimilarProducts: async (req, res) => {
+        try {
+            const id = req.params.id;
+            const product = await Product.findById(id);
+            const productCategory = product.categories;
+
+            const similarProducts = await Product.find({
+                categories: { $in: productCategory },
+                _id: { $ne: id }
+            }).limit(3);
+
+            res.status(200).json({
+                success: true,
+                message: 'Get similar products successfully!',
+                data: similarProducts
+            });
+        } catch (err) {
+            res.status(500).json({
+                success: false,
+                message: err,
+                data: []
+            });
+        }
+    },
     getProductById: async (req, res) => {
         try {
             const id = req.params.id;

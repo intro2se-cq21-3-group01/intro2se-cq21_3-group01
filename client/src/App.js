@@ -7,11 +7,13 @@ import RegisterPage from "./pages/register";
 import LoginPage from "./pages/login";
 import ProductPage from "./pages/product";
 import CartPage from "./pages/cart";
+import HomePage from "./pages/home";
 
 const App = () => {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<HomePage />} />
         <Route path="/product" element={<ProductListPage />} />
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/register" element={<RegisterPage />} />

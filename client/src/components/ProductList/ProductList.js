@@ -30,6 +30,7 @@ const ProductList = (props) => {
         }
 
         setProducts(newProducts);
+        window.scrollTo(0, 0)
         // eslint-disable-next-line
     }, [sortBy]);
 
@@ -46,6 +47,7 @@ const ProductList = (props) => {
         const finalFilteredProducts = filteredByPrice.filter(product => filteredByCategory.includes(product));
 
         setFilteredProducts(finalFilteredProducts);
+        window.scrollTo(0, 0)
     }, [inputEnd, checkedCategories, products]);
 
     return (
