@@ -3,11 +3,18 @@ const Product = require('../models/Product');
 const productController = {
     getAllProducts: async (req, res) => {
         try {
-            const products = await Product.find();
+            const { page, limit } = req.query;
+
+            console.log(req.query);
+            const offset = (page - 1) * limit;
+
+            const products = await Product.find().skip(offset).limit(limit).exec();
+            const totalProducts = await Product.countDocuments().exec()
 
             res.status(200).json({
                 success: true,
                 message: 'Get all products successfully !',
+                totalPages: Math.ceil(totalProducts / limit),
                 data: products
             });
         } catch (err) {

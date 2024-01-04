@@ -31,18 +31,14 @@ export const CartProvider = ({ children }) => {
     };
 
     const updateQuantity = (productId, changeAmount) => {
-        console.log('call');
         setCartItems((prevItems) => {
-            console.log('call set');
 
             const updatedItems = [...prevItems];
             const existingItemIndex = prevItems.findIndex((cartItem) => cartItem.product._id === productId);
 
             if (existingItemIndex !== -1) {
                 // If the product exists in the cart, update its quantity
-                console.log(updatedItems[existingItemIndex].quantity);
                 updatedItems[existingItemIndex].quantity += changeAmount;
-                console.log(updatedItems[existingItemIndex].quantity);
 
                 // If the quantity becomes 0 or negative, remove the item from the cart
                 if (updatedItems[existingItemIndex].quantity <= 0) {

@@ -1,0 +1,15 @@
+.active .page-link {
+    background-color: #222222 !important;
+    color           : white !important;
+    border          : #222222 !important;
+    font-size       : Quicksand !important;
+}
+
+.page-link {
+    color    : #222222 !important;
+    font-size: Quicksand !important;
+}
+
+.page-link:focus {
+    box-shadow: none !important;
+}
