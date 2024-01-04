@@ -4,9 +4,11 @@ import styles from './Cart.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { useCart } from '../../context/CartContext';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
     const { cartItems, removeFromCart, updateQuantity } = useCart();
+    const navigate = useNavigate();
 
     const subTotal = useMemo(() => {
         let total = 0;
@@ -106,6 +108,7 @@ const Cart = () => {
                                     type="button"
                                     className="btn btn-dark btn-block btn-lg w-100"
                                     data-mdb-ripple-color="dark"
+                                    onClick={() => { navigate("/checkout") }}
                                 >
                                     Checkout
                                 </button>

@@ -5,6 +5,7 @@ import Banner01 from '../../assets/imgs/Banner01.png'
 import Banner02 from '../../assets/imgs/Banner02.png'
 import Banner03 from '../../assets/imgs/Banner03.png'
 import Banner04 from '../../assets/imgs/Banner04.png'
+import { Link } from 'react-router-dom'
 
 export default function Home() {
     return (
@@ -17,7 +18,7 @@ export default function Home() {
                             <h1 style={{ textShadow: '2px 2px 4px #000000' }}>Luxury Cookies</h1>
                             <p className='m-0'>The best Cookies you’ll ever taste.</p>
                             <p>Not let the name deceive you, We also serve bread and pantries.</p>
-                            <button type='button' className='btn btn-primary btn-sm' style={{ backgroundColor: '#965C5Bdb' }}> Let’s try some </button>
+                            <Link to="/product" className='btn btn-primary btn-sm' style={{ backgroundColor: '#965C5Bdb', border: '1px solid #D9D9D9' }}> Let’s try some </Link>
                         </div>
                     </div>
                 </div>
@@ -33,7 +34,7 @@ export default function Home() {
                     </h1>
                     <p className={styles.middleTemplate}>Lorem ipsum dolor sit amet consectetur. Purus nisl sit id aliquam lectus. Morbi rutrum viverra blandit posuere ipsum pellentesque.</p>
                     <div className='d-flex justify-content-center mt-5'>
-                        <button type='button' className='btn btn-primary btn-sm' style={{ backgroundColor: '#965C5Bdb' }}>More about us</button>
+                        <button type='button' className='btn btn-primary btn-sm' style={{ backgroundColor: '#965C5Bdb', border: '1px solid #D9D9D9' }}>More about us</button>
                     </div>
                 </div>
                 <div className='col-sm-6'>

@@ -3,6 +3,7 @@ import { useParams } from 'react-router';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+import { toast } from 'react-toastify';
 
 import styles from './ProductDetail.module.css';
 import { useCart } from '../../context/CartContext';
@@ -41,6 +42,8 @@ const ProductDetail = (props) => {
             quantity: count,
             product: product
         });
+
+        toast.success('Add to cart successfully !');
     }
 
     return (

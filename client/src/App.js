@@ -8,6 +8,8 @@ import LoginPage from "./pages/login";
 import ProductPage from "./pages/product";
 import CartPage from "./pages/cart";
 import HomePage from "./pages/home";
+import CheckoutPage from "./pages/checkout";
+
 
 const App = () => {
   return (
@@ -19,11 +21,12 @@ const App = () => {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/cart" element={<CartPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
       </Routes>
 
       <ToastContainer
         position="top-center"
-        autoClose={3000}
+        autoClose={2000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick

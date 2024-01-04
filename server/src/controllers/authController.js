@@ -57,6 +57,17 @@ const authController = {
         );
     },
 
+    verifyToken: (token) => {
+        try {
+            const decoded = jwt.verify(token, process.env.JWT_ACCESS_KEY);
+
+            // Trả về thông tin giải mã nếu token hợp lệ
+            return decoded;
+        } catch (error) {
+            // Nếu có lỗi xác thực, trả về null hoặc có thể thực hiện các xử lý lỗi khác tùy thuộc vào yêu cầu của bạn
+            return null;
+        }
+    },
     //LOGIN
     loginUser: async (req, res) => {
         try {
@@ -110,7 +121,6 @@ const authController = {
             });
         }
     },
-
     requestRefreshToken: async (req, res) => {
         //Take refresh token from user
         const refreshToken = req.cookies.refreshToken;

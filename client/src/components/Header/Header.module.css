@@ -7,7 +7,8 @@
 }
 
 .header {
-    padding: 0 !important;
+    padding    : 0 !important;
+    font-weight: 700;
 }
 
 .navbar {
@@ -37,11 +38,16 @@
     margin          : 0 15px 0 15px
 }
 
-.count-item {
-    background-color: black;
-    color           : white;
-    border-radius   : 50%;
-    width           : 25px;
-    height          : 25px;
-    text-align      : center;
+.cart-total-price {
+    color      : #FF0303;
+    font-family: Quicksand;
+    font-size  : 14px;
+    font-weight: 500;
+}
+
+.cart-quantity {
+    color      : rgba(0, 0, 0, 0.30);
+    font-family: Quicksand;
+    font-size  : 14px;
+    font-weight: 500;
 }
