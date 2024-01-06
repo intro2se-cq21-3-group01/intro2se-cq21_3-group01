@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Smooch+Sans:wght@800&display=swap');
+
+* {
+    padding   : 0;
+    margin    : 0;
+    box-sizing: border-box;
+}
+
+.similar-container {
+    margin-top: 50px !important;
+}
+
+.similar-header h3 {
+    color               : #000;
+    font-variant-numeric: lining-nums tabular-nums;
+    font-family         : Source Han Serif CN;
+    font-size           : 30px;
+    font-weight         : 700;
+}
+
+.similar-header::after {
+    content      : "";
+    display      : block;
+    width        : 70px;
+    height       : 3px;
+    background   : rgba(255, 1, 1, 0.63);
+    margin-bottom: 20px;
+}
+
+.similar-product {
+    display        : flex;
+    flex-direction : column;
+    justify-content: center;
+    align-items    : center;
+    padding        : 20px;
+    box-shadow     : 0px 0px 3px 0px #00000040;
+    border-radius  : 10px;
+}
+
+.product-img {
+    width        : 380px;
+    height       : 250px;
+    object-fit   : cover;
+    border-radius: 5px;
+}
+
+.product-name {
+    color      : #000;
+    text-align : center;
+    font-family: Quicksand;
+    font-size  : 25px;
+    font-weight: 900;
+    margin     : 15px 0;
+}
+
+.product-price {
+    color      : #E00000;
+    text-align : center;
+    font-family: Quicksand;
+    font-size  : 20px;
+    font-weight: 500;
+}
+
+.similar-view-all-product {
+    text-align: center;
+    margin    : 40px 0 40px 0 !important;
+}
+
+.similar-product-btn {
+    color           : #000;
+    width           : 400px;
+    height          : 60px;
+    text-decoration : none;
+    text-align      : center;
+    border-radius   : 10px;
+    border          : 1px solid rgba(255, 0, 0, 0.76);
+    padding         : 20px 130px;
+    background-color: #ECECEC;
+    color           : #000;
+    font-size       : 20px;
+    font-weight     : 500;
+}
+
+.similar-product-btn:hover {
+    opacity: 0.7;
+}

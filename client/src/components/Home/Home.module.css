@@ -1,0 +1,13 @@
+.position-absolute {
+    top        : 40%;
+    left       : 10%;
+    text-align : left;
+    color      : white;
+    font-family: Quando;
+}
+
+.middleTemplate {
+    font-family: Quando;
+    color      : black;
+    text-align : center;
+}

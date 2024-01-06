@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@800&display=swap');
+
+.register-header h4 {
+    color      : #1C1C1C;
+    font-family: Smooch Sans;
+    font-size  : 120px;
+    font-weight: 700;
+    text-align : center;
+}
+
+.register-header p {
+    color      : #1C1C1C;
+    font-family: Poppins;
+    font-size  : 14px;
+    font-style : normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align : center;
+}
+
+.register-form {
+    text-align: center;
+}
+
+.register-form input {
+    width           : 360px;
+    height          : 50px;
+    border-radius   : 10px;
+    background-color: #C8C8C8;
+    border          : none;
+    margin          : 10px auto;
+    color           : #1C1C1C;
+    font-family     : Poppins;
+    font-size       : 12px;
+    font-style      : normal;
+    font-weight     : 400;
+    line-height     : normal;
+    padding         : 20px;
+}
+
+.register-form button {
+    margin-top   : 20px;
+    width        : 360px;
+    height       : 50px;
+    border-radius: 10px;
+    border       : none;
+}
+
+.register-form .forgot-password {
+    display        : block;
+    text-decoration: none;
+    color          : #2563EB;
+    font-family    : Poppins;
+    font-size      : 11px;
+    font-weight    : 400;
+}
+
+.register-form .btn-next {
+    background : #1C1C1C;
+    color      : #FFF;
+    font-family: Poppins;
+    font-size  : 12px;
+    font-weight: 700;
+}
+
+.register-form .register-other {
+    margin     : 25px 0 10px 0;
+    color      : #1C1C1C;
+    font-family: Poppins;
+    font-size  : 16px;
+}
+
+.register-form .btn-goolge,
+.register-form .btn-facebook {
+    color      : #1C1C1C;
+    font-family: Poppins;
+}
+
+.register-form p {
+    display: block;
+
+    margin-top : 25px;
+    color      : #9B9B9B;
+    font-family: Poppins;
+    font-size  : 14px;
+    font-weight: 400;
+}
+
+.register-form .register {
+    margin-left    : 5px;
+    text-decoration: none;
+    color          : #2563EB;
+    font-family    : Poppins;
+    font-size      : 14px;
+}
+
+.register-img {
+    width        : auto;
+    height       : 600px;
+    border-radius: 30px;
+    margin-top   : 50px;
+}
