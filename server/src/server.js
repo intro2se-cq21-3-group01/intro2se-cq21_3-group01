@@ -17,7 +17,11 @@ dotenv.config();
 conecctToDB();
 
 app.use(bodyParser.json({ limit: "50mb" }));
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:3000',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+}));
 
 //ROUTES
 app.use("/api/product", productRoute);

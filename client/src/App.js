@@ -10,6 +10,8 @@ import CartPage from "./pages/cart";
 import HomePage from "./pages/home";
 import CheckoutPage from "./pages/checkout";
 
+import ForgotPasswordPage from "./pages/forgotPassword";
+import ChangePasswordPage from "./pages/changePassword";
 
 const App = () => {
   return (
@@ -21,7 +23,6 @@ const App = () => {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/cart" element={<CartPage />} />
-        <Route path="/checkout" element={<CheckoutPage />} />
       </Routes>
 
       <ToastContainer
