@@ -7,6 +7,8 @@ import RegisterPage from "./pages/register";
 import LoginPage from "./pages/login";
 import ProductPage from "./pages/product";
 import CartPage from "./pages/login copy";
+import ForgotPasswordPage from "./pages/forgotPassword";
+import ChangePasswordPage from "./pages/changePassword";
 
 const App = () => {
   return (
@@ -17,6 +19,8 @@ const App = () => {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/cart" element={<CartPage />} />
+        <Route path="/user/forgot-password" element={<ForgotPasswordPage />} />
+        <Route path="/user/change-password" element={<ChangePasswordPage />} />
       </Routes>
 
       <ToastContainer
