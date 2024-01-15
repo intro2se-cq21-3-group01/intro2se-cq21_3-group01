@@ -6,7 +6,10 @@ import ProductListPage from "./pages/products";
 import RegisterPage from "./pages/register";
 import LoginPage from "./pages/login";
 import ProductPage from "./pages/product";
-import CartPage from "./pages/login copy";
+import CartPage from "./pages/cart";
+import HomePage from "./pages/home";
+import CheckoutPage from "./pages/checkout";
+
 import ForgotPasswordPage from "./pages/forgotPassword";
 import ChangePasswordPage from "./pages/changePassword";
 
@@ -14,6 +17,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<HomePage />} />
         <Route path="/product" element={<ProductListPage />} />
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/register" element={<RegisterPage />} />
@@ -25,7 +29,7 @@ const App = () => {
 
       <ToastContainer
         position="top-center"
-        autoClose={3000}
+        autoClose={2000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick

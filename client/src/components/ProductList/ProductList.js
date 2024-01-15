@@ -1,23 +1,35 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
+import ReactPaginate from 'react-paginate';
 
 import ProductItem from "../ProductItem/ProductItem";
+import './ProductList.css';
 
 const ProductList = (props) => {
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const [currentLimit] = useState(3);
+    const [totalPages, setTotalPages] = useState(0);
 
     const { sortBy, inputEnd, checkedCategories } = props;
 
     // Call api to get products
     useEffect(() => {
         const getAllProducts = async () => {
-            const response = await axios.get('http://localhost:8000/api/product');
-            setProducts(response.data.data);
+            const response = await axios.get(
+                `http://localhost:8000/api/product?page=${currentPage}&limit=${currentLimit}`
+            );
+
+            if (response.data.success) {
+                setProducts(response.data.data);
+                setTotalPages(response.data.totalPages);
+            }
         }
 
         getAllProducts();
-    }, []);
+    }, [currentPage]);
 
     // Update products whenever there is a change in the original data
     useEffect(() => {
@@ -30,6 +42,7 @@ const ProductList = (props) => {
         }
 
         setProducts(newProducts);
+        window.scrollTo(0, 0)
         // eslint-disable-next-line
     }, [sortBy]);
 
@@ -46,7 +59,12 @@ const ProductList = (props) => {
         const finalFilteredProducts = filteredByPrice.filter(product => filteredByCategory.includes(product));
 
         setFilteredProducts(finalFilteredProducts);
+        window.scrollTo(0, 0)
     }, [inputEnd, checkedCategories, products]);
+
+    const handlePageClick = async (event) => {
+        setCurrentPage(event.selected + 1);
+    };
 
     return (
         <>
@@ -59,8 +77,35 @@ const ProductList = (props) => {
                             </div>
                         ))}
                     </div>
+                    <div className="row mt-5 justify-content-center">
+                        <div className="col-6">
+                            <div className="product-pagination d-flex justify-content-center">
+                                <ReactPaginate
+                                    nextLabel=">"
+                                    onPageChange={handlePageClick}
+                                    pageRangeDisplayed={3}
+                                    marginPagesDisplayed={2}
+                                    pageCount={totalPages}
+                                    previousLabel="<"
+                                    pageClassName="page-item"
+                                    pageLinkClassName="page-link"
+                                    previousClassName="page-item"
+                                    previousLinkClassName="page-link"
+                                    nextClassName="page-item"
+                                    nextLinkClassName="page-link"
+                                    breakLabel="..."
+                                    breakClassName="page-item"
+                                    breakLinkClassName="page-link"
+                                    containerClassName="pagination"
+                                    activeClassName="active"
+                                    renderOnZeroPageCount={null}
+                                />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </>
     );
 }

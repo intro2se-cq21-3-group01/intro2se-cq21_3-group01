@@ -7,6 +7,7 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons';
 
 import styles from './ProductItem.module.css'
 import { useCart } from '../../context/CartContext';
+import { toast } from 'react-toastify';
 
 const ProductItem = (props) => {
     const { _id, imgUrl, name, price } = props.product;
@@ -19,6 +20,8 @@ const ProductItem = (props) => {
             quantity: 1,
             product: props.product
         });
+
+        toast.success('Add to cart successfully !');
     }
     return (
         <div className={` ${styles['product-item']} card`}>

@@ -3,6 +3,7 @@ import { useParams } from 'react-router';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+import { toast } from 'react-toastify';
 
 import styles from './ProductDetail.module.css';
 import { useCart } from '../../context/CartContext';
@@ -16,12 +17,13 @@ const ProductDetail = (props) => {
     useEffect(() => {
         const getProduct = async () => {
             const response = await axios.get(`http://localhost:8000/api/product/${id}`);
-            setProduct(response.data.data);
+
+            if (response.data.success)
+                setProduct(response.data.data);
         };
 
         getProduct();
-        // eslint-disable-next-line
-    }, []);
+    }, [id]);
 
     const [count, setCount] = useState(1);
 
@@ -40,11 +42,18 @@ const ProductDetail = (props) => {
             quantity: count,
             product: product
         });
+
+        toast.success('Add to cart successfully !');
     }
 
     return (
         <div className={styles['product-container']}>
             <div className="container">
+                <div className='row'>
+                    <div className={styles['product-header']}>
+                        <h3>Product Detail</h3>
+                    </div>
+                </div>
                 <div className="row">
                     <div className="col-6">
                         <img className={styles['product-img']} src={product.imgUrl} alt="" />

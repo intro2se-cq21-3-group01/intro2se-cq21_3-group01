@@ -26,7 +26,6 @@ const Login = () => {
         const respone = await axios.post('http://localhost:8000/api/auth/login', user);
 
         if (respone.data.success) {
-            console.log(respone.data);
             const userData = {
                 username: respone.data.data.username,
                 isAuthenticated: true,

@@ -55,7 +55,7 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <div className="col-lg-3 col-md-4 col-sm-6">
+            <div className="col-lg-2 col-md-4 col-sm-6">
                 <h1>Gallery</h1>
                 <div className={styles.footerSet}>
                     <div className="set4">
