@@ -1,7 +1,6 @@
-const router = require("express").Router();
-
 const authController = require("../controllers/authController");
-// const { verifyToken } = require("../controllers/verifyToken");
+
+const router = require("express").Router();
 
 //REGISTER
 router.post("/register", authController.registerUser);
@@ -11,5 +10,14 @@ router.post("/login", authController.loginUser);
 
 // //LOG OUT
 // router.post("/logout", verifyToken, authController.logOut);
+
+// FORGOT PASSWORD
+router.post("/forgot-password", authController.forgotPassword);
+
+// RESET PASSWORD
+router.get("/reset-password/:token", authController.resetPassword);
+
+// CHANGE PASSWORD
+router.post("/change-password", authController.changePassword);
 
 module.exports = router;
