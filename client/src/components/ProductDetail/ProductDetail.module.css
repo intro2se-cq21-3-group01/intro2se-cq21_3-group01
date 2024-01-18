@@ -11,7 +11,7 @@
 .product-header h3 {
     color               : #000;
     font-variant-numeric: lining-nums tabular-nums;
-    font-family         : Source Han Serif CN;
+    font-family: 'Quando', Tahoma, Geneva, Verdana, sans-serif !important;
     font-size           : 30px;
     font-weight         : 700;
 }
@@ -38,14 +38,14 @@
 .product-name {
     color               : #000;
     font-variant-numeric: lining-nums tabular-nums;
-    font-family         : Quicksand;
+    font-family: 'Quando', Tahoma, Geneva, Verdana, sans-serif !important;
     font-size           : 30px;
     font-weight         : 700;
 }
 
 .product-price {
     color        : #E00000;
-    font-family  : Quicksand;
+    font-family: 'Quando', Tahoma, Geneva, Verdana, sans-serif !important;
     font-size    : 20px;
     font-weight  : 700;
     margin-bottom: 50px;
@@ -78,11 +78,11 @@
 }
 
 .product-add-cart button {
-    font-family  : Quicksand;
+    font-family: 'Quando', Tahoma, Geneva, Verdana, sans-serif !important;
     width        : 600px;
     height       : 60px;
     border-radius: 10px;
-    border       : 1px solid rgba(255, 0, 0, 0.76);
+    border       : 1px solid #222;
     background   : #ECECEC;
     font-weight  : 500;
     margin-bottom: 30px;
@@ -90,12 +90,12 @@
 }
 
 .product-buy button {
-    font-family  : Quicksand;
+    font-family: 'Quando', Tahoma, Geneva, Verdana, sans-serif !important;
     width        : 600px;
     height       : 60px;
     border-radius: 10px;
-    border       : 1px solid rgba(255, 0, 0, 0.76);
-    background   : #F00;
+    border       : 1px solid #222222;
+    background   : #222222;
     color        : #FFF;
     font-size    : 18px;
     font-weight  : 500;
@@ -111,14 +111,14 @@
 
 .product-des h4 {
     color      : #000;
-    font-family: Quicksand;
+    font-family: 'Quando', Tahoma, Geneva, Verdana, sans-serif !important;
     font-size  : 30px;
     font-weight: 700;
 }
 
 .product-des p {
     color      : #000;
-    font-family: Inter;
+    font-family: 'Quando', Tahoma, Geneva, Verdana, sans-serif !important;
     font-size  : 16px;
     font-weight: 400;
 }

@@ -30,3 +30,41 @@
     display        : flex;
     justify-content: end;
 }
+
+.colorBR {
+    background-color: #dcf1ff;
+    padding-top: 10px;
+    border-radius: 10px;
+}
+
+.colorBR1 {
+    background-color: #dcf1ff;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@700&family=Inter:wght@500&display=swap");
+
+.nameProduct {
+    font-family: "Inter", sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.summaryTotal {
+    color: var(--800, #2d3748);
+    font-family: "Inter", sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.valueSummaryTotal {
+    color: var(--800, #2d3748);
+    font-family: "Inter", sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+}

@@ -4,8 +4,6 @@ const productController = {
     getAllProducts: async (req, res) => {
         try {
             const { page, limit } = req.query;
-
-            console.log(req.query);
             const offset = (page - 1) * limit;
 
             const products = await Product.find().skip(offset).limit(limit).exec();

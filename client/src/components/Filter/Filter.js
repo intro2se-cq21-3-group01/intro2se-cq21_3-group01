@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import customAxios from '../../axios/customAxios';
+
 
 import styles from './Filter.module.css';
 
@@ -17,7 +18,7 @@ const Filter = (props) => {
 
     useEffect(() => {
         const getCategories = async () => {
-            const response = await axios(`http://localhost:8000/api/category`);
+            const response = await customAxios.get(`/api/category`);
 
             setCategories(response.data.data)
         }

@@ -1,0 +1,28 @@
+.order-container {
+    font-family: 'Quando', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+
+.order-header {
+    text-align : center;
+    font-weight: 1000 !important;
+    font-size  : 80px;
+    font-weight: 600;
+    font-family: 'Quando', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+
+td,
+th {
+    vertical-align: middle;
+}
+
+.btn-cancel {
+    border-radius: 5px;
+    padding      : 5px;
+    border       : 1px solid #222222;
+}
+
+.btn-cancel:hover {
+    opacity         : 0.7;
+    background-color: #222222;
+    color           : white;
+}

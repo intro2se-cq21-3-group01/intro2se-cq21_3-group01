@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import axios from 'axios';
+import customAxios from '../../axios/customAxios';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
@@ -16,7 +17,7 @@ const ProductDetail = (props) => {
 
     useEffect(() => {
         const getProduct = async () => {
-            const response = await axios.get(`http://localhost:8000/api/product/${id}`);
+            const response = await customAxios.get(`/api/product/${id}`);
 
             if (response.data.success)
                 setProduct(response.data.data);
@@ -73,10 +74,19 @@ const ProductDetail = (props) => {
                             />
                         </div>
                         <div className={styles['product-add-cart']}>
-                            <button onClick={handleAddToCart}>Add to cart</button>
+                            <button
+                                onClick={handleAddToCart}
+                                disabled={product.quantity === 0}
+                            >
+                                {product.quantity === 0 ? "Out of stock" : " Add to cart"}
+                            </button>
                         </div>
                         <div className={styles['product-buy']}>
-                            <button>Buy now</button>
+                            <button
+                                disabled={product.quantity === 0}
+                            >
+                                Buy now
+                            </button>
                         </div>
                         <div className={styles['product-des']}>
                             <h4>Description</h4>

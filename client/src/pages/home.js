@@ -4,7 +4,7 @@ import Home from '../components/Home/Home';
 
 const HomePage = () => {
     return (
-        <div style={{ backgroundColor: '#EFEFEF' }}>
+        <div style={{ backgroundColor: '#FFFFFF' }}>
             <Header />
             <Home />
             <Footer />

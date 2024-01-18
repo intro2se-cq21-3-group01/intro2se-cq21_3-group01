@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import axios from 'axios';
+import customAxios from '../../axios/customAxios';
+
 import ReactPaginate from 'react-paginate';
 
 import ProductItem from "../ProductItem/ProductItem";
@@ -10,7 +11,7 @@ const ProductList = (props) => {
     const [filteredProducts, setFilteredProducts] = useState([]);
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [currentLimit] = useState(3);
+    const [currentLimit] = useState(6);
     const [totalPages, setTotalPages] = useState(0);
 
     const { sortBy, inputEnd, checkedCategories } = props;
@@ -18,8 +19,8 @@ const ProductList = (props) => {
     // Call api to get products
     useEffect(() => {
         const getAllProducts = async () => {
-            const response = await axios.get(
-                `http://localhost:8000/api/product?page=${currentPage}&limit=${currentLimit}`
+            const response = await customAxios.get(
+                `/api/product?page=${currentPage}&limit=${currentLimit}`
             );
 
             if (response.data.success) {
@@ -29,6 +30,7 @@ const ProductList = (props) => {
         }
 
         getAllProducts();
+        // eslint-disable-next-line
     }, [currentPage]);
 
     // Update products whenever there is a change in the original data
@@ -69,7 +71,7 @@ const ProductList = (props) => {
     return (
         <>
             <div className="product-list">
-                <div className="container">
+                <div className="container mt-3">
                     <div className="row">
                         {filteredProducts.map(product => (
                             <div key={product._id} className="col-4">
@@ -80,26 +82,28 @@ const ProductList = (props) => {
                     <div className="row mt-5 justify-content-center">
                         <div className="col-6">
                             <div className="product-pagination d-flex justify-content-center">
-                                <ReactPaginate
-                                    nextLabel=">"
-                                    onPageChange={handlePageClick}
-                                    pageRangeDisplayed={3}
-                                    marginPagesDisplayed={2}
-                                    pageCount={totalPages}
-                                    previousLabel="<"
-                                    pageClassName="page-item"
-                                    pageLinkClassName="page-link"
-                                    previousClassName="page-item"
-                                    previousLinkClassName="page-link"
-                                    nextClassName="page-item"
-                                    nextLinkClassName="page-link"
-                                    breakLabel="..."
-                                    breakClassName="page-item"
-                                    breakLinkClassName="page-link"
-                                    containerClassName="pagination"
-                                    activeClassName="active"
-                                    renderOnZeroPageCount={null}
-                                />
+                                {filteredProducts.length > 0 &&
+                                    <ReactPaginate
+                                        nextLabel=">"
+                                        onPageChange={handlePageClick}
+                                        pageRangeDisplayed={3}
+                                        marginPagesDisplayed={2}
+                                        pageCount={totalPages}
+                                        previousLabel="<"
+                                        pageClassName="page-item"
+                                        pageLinkClassName="page-link"
+                                        previousClassName="page-item"
+                                        previousLinkClassName="page-link"
+                                        nextClassName="page-item"
+                                        nextLinkClassName="page-link"
+                                        breakLabel="..."
+                                        breakClassName="page-item"
+                                        breakLinkClassName="page-link"
+                                        containerClassName="pagination"
+                                        activeClassName="active"
+                                        renderOnZeroPageCount={null}
+                                    />
+                                }
                             </div>
                         </div>
                     </div>

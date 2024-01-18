@@ -4,13 +4,16 @@ const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
     const [cartItems, setCartItems] = useState([]);
-    const [totalPrice, setTotalPrice] = useState([]);
+    const [subTotalPrice, setSubTotalPrice] = useState(0);
+    const [grandTotalPrice, setGrandTotalPrice] = useState(0);
+    const [discount, setDiscount] = useState(0);
+    const [discountCode, setDiscountCode] = useState("");
 
     useEffect(() => {
         let total = 0;
         cartItems.forEach((cartItem) => total += cartItem.quantity * cartItem.product.price)
 
-        setTotalPrice(total.toFixed(2));
+        setSubTotalPrice(total.toFixed(2));
     }, [cartItems]);
 
     const addToCart = (item) => {
@@ -61,7 +64,8 @@ export const CartProvider = ({ children }) => {
     return (
         <CartContext.Provider
             value={{
-                cartItems, totalPrice,
+                cartItems, subTotalPrice, grandTotalPrice, discount, discountCode,
+                setGrandTotalPrice, setDiscount, setDiscountCode,
                 addToCart, removeFromCart, clearCart, updateQuantity
             }}
         >

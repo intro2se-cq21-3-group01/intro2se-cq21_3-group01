@@ -12,19 +12,60 @@
 }
 
 .navbar {
-    background-color: #D9D9D9 !important;
+    background-color: #EFEFEF !important;
 }
 
 .navbar-brand {
-    font-family: 'Vanity' !important;
-    color      : #5653e8 !important;
+    font-family: 'Quando', Tahoma, Geneva, Verdana, sans-serif !important;
+    color      : black !important;
     font-size  : 27px !important;
     font-weight: 600 !important;
 }
 
-.cart {
+.cart,
+.user {
     margin-top : 8px !important;
     margin-left: 10px !important;
+}
+
+.user {
+    position: relative;
+}
+
+.user:hover {
+    cursor : pointer;
+    opacity: 0.7;
+}
+
+.popup ul {
+    padding: 0;
+}
+
+.popup li {
+    list-style  : none;
+    display     : block;
+    font-size   : 15px;
+    padding-left: 10px;
+    color       : #222222;
+}
+
+.popup li:hover {
+    color           : white !important;
+    background-color: #222222;
+}
+
+.popup {
+    position        : absolute;
+    top             : 50%;
+    right           : -300%;
+    background-color: #fff;
+    box-shadow      : 0 2px 5px rgba(0, 0, 0, 0.1);
+    width           : 150px;
+    border-radius   : 5px;
+}
+
+.popup-item {
+    text-decoration: none;
 }
 
 .slice {
@@ -40,14 +81,14 @@
 
 .cart-total-price {
     color      : #FF0303;
-    font-family: Quicksand;
+    font-family: 'Quando', Tahoma, Geneva, Verdana, sans-serif;
     font-size  : 14px;
     font-weight: 500;
 }
 
 .cart-quantity {
     color      : rgba(0, 0, 0, 0.30);
-    font-family: Quicksand;
+    font-family: 'Quando', Tahoma, Geneva, Verdana, sans-serif;
     font-size  : 14px;
     font-weight: 500;
 }

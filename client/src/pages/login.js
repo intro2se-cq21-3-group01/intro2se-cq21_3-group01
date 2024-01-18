@@ -16,7 +16,7 @@ const LoginPage = () => {
             navigate('/product');
         }
         // eslint-disable-next-line
-    }, [])
+    }, []);
 
     return (
         <>

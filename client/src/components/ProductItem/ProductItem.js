@@ -10,8 +10,7 @@ import { useCart } from '../../context/CartContext';
 import { toast } from 'react-toastify';
 
 const ProductItem = (props) => {
-    const { _id, imgUrl, name, price } = props.product;
-    const stars = 5;
+    const { _id, imgUrl, name, price, quantity, stars } = props.product;
 
     const { addToCart } = useCart();
 
@@ -44,8 +43,9 @@ const ProductItem = (props) => {
                 <button
                     className={` ${styles['product-item-btn']} btn btn-primary`}
                     onClick={handleAddToCart}
+                    disabled={quantity === 0}
                 >
-                    Add to cart
+                    {quantity === 0 ? "Out of stock" : " Add to cart"}
                 </button>
             </div>
         </div>

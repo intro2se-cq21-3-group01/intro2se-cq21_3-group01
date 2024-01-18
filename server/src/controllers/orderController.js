@@ -1,20 +1,17 @@
 const Order = require('../models/Order');
-const authController = require('./authController');
+const authMiddleware = require('../middleware/authMiddleware');
 
-// Controller methods for handling orders
 const orderController = {
     // Create a new order
     createOrder: async (req, res) => {
         try {
             const tokenArray = req.headers.authorization.split(' ');
             const accessToken = tokenArray[1];
+            const decodedToken = authMiddleware.verifyToken(accessToken);
 
-            const decodedToken = authController.verifyToken(accessToken);
-            console.log({ ...req.body, "user": decodedToken.id });
             const newOrder = await Order.create({ ...req.body, "user": decodedToken.id });
 
-            console.log(newOrder);
-            res.status(201).json({
+            res.status(200).json({
                 success: true,
                 message: "Create order successfully !",
                 data: newOrder
@@ -24,7 +21,31 @@ const orderController = {
             res.status(500).json({ error: 'Internal Server Error' });
         }
     },
+    // Get orders by user
+    getOrdersByUser: async (req, res) => {
+        try {
+            const tokenArray = req.headers.authorization.split(' ');
+            const accessToken = tokenArray[1];
+            const decodedToken = authMiddleware.verifyToken(accessToken);
 
+            const orders = await Order.find({ user: decodedToken.id })
+                .populate('items.product')
+                .sort({ date: -1 });;
+
+            res.status(200).json({
+                success: true,
+                message: "Get order by users successfully !",
+                data: orders
+            });
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({
+                success: true,
+                message: 'Internal Server Error',
+                data: {}
+            });
+        }
+    },
     // Get all orders
     getAllOrders: async (req, res) => {
         try {

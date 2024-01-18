@@ -1,20 +1,26 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+
 import { toast } from 'react-toastify';
 
 import { useCart } from '../../context/CartContext';
 import { useAuth } from '../../context/AuthContext';
 
 import PayPal from '../Paypal/Paypal';
+import customAxios from '../../axios/customAxios';
+
+import styles from './Checkout.module.css'
 
 const Checkout = (props) => {
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
     const [address, setAddress] = useState('');
+    const [note, setNote] = useState('');
     const [paymentMethod, setPaymentMethod] = useState('cash');
 
-    const { cartItems, totalPrice, clearCart } = useCart();
+    const { cartItems, discountCode, discount,
+        setDiscount, setDiscountCode,
+        grandTotalPrice, clearCart } = useCart();
     const { user } = useAuth();
 
     const navigate = useNavigate();
@@ -39,13 +45,20 @@ const Checkout = (props) => {
     };
 
     const handlePayByCash = async (e) => {
+        if (!name || !phone || !address) {
+            toast.error("Please fill in all required fields.");
+            return;
+        }
+
         const newOrder = {
             name: name,
             phone: phone,
             address: address,
             paymentMethod: paymentMethod,
             items: cartItems,
-            totalPrice: totalPrice
+            totalPrice: grandTotalPrice,
+            note: note,
+            discountCode: discountCode
         }
 
         const headers = {
@@ -53,11 +66,14 @@ const Checkout = (props) => {
             "Authorization": `Bearer ${user.token}`,
         };
 
-        const response = await axios.post(`http://localhost:8000/api/orders/`, newOrder, { headers })
+        const response = await customAxios.post(`/api/orders/`, newOrder, { headers })
 
         if (response.data.success) {
             clearCart();
-            toast.success("Mua hàng thành công !!!");
+            setDiscount(0);
+            setDiscountCode("");
+
+            toast.success("Purchase successfully !!!");
             navigate('/product');
         }
     }
@@ -69,39 +85,40 @@ const Checkout = (props) => {
                     <h2 style={{ fontWeight: '1200' }}>CHECKOUT FORM</h2>
                 </div>
 
-                <div className="row g-5">
-                    <div className="col-md-5 col-lg-4 order-md-last">
-                        <h4 className="d-flex justify-content-between align-items-center mb-3">
-                            <span style={{ color: '#222222' }}>Your cart</span>
-                            <span className="badge rounded-pill" style={{ background: '#222222' }}>{cartItems.length}</span>
-                        </h4>
-                        <ul className="list-group mb-3">
-                            {cartItems && cartItems.map((cartItem, index) => (
-                                <li className="list-group-item d-flex justify-content-between lh-sm" key={index}>
-                                    <div>
-                                        <h6 className="my-0">{cartItem.quantity} - {cartItem.product.name}</h6>
+                <div className="row g-5 d-flex justify-space-around">
+                    <div className={`col-md-5 col-lg-4 order-md-last`}>
+                        <div className={styles['colorBR1']}>
+                            <h4 className="d-flex justify-content-between align-items-center mb-3">
+                                <span style={{ color: '#222222' }}>Your cart</span>
+                                <span className="badge rounded-pill" style={{ background: '#222222' }}>{cartItems.length}</span>
+                            </h4>
+                            <ul className="list-group mb-3">
+                                {cartItems && cartItems.map((cartItem, index) => (
+                                    <li className="list-group-item d-flex justify-content-between lh-sm" key={index}>
+                                        <div>
+                                            <div className={styles['nameProduct']}>{cartItem.quantity} - {cartItem.product.name}</div>
+                                        </div>
+                                        <span className="text-body-secondary">${cartItem.product.price * cartItem.quantity}</span>
+                                    </li>
+                                ))}
+                                <li className="list-group-item d-flex justify-content-between bg-body-tertiary">
+                                    <div className="text-success">
+                                        <div className={styles['nameProduct']}>Coupon code : {discountCode || "Empty"}</div>
                                     </div>
-                                    <span className="text-body-secondary">${cartItem.product.price * cartItem.quantity}</span>
+                                    <span className="text-success">− $ {discount}</span>
                                 </li>
-                            ))}
-                            {/* <li className="list-group-item d-flex justify-content-between bg-body-tertiary">
-                                <div className="text-success">
-                                    <h6 className="my-0">Promo code</h6>
-                                    <small>EXAMPLECODE</small>
-                                </div>
-                                <span className="text-success">−$5</span>
-                            </li> */}
-                            <li className="list-group-item d-flex justify-content-between">
-                                <span>Total (USD)</span>
-                                <strong>${totalPrice}</strong>
-                            </li>
-                        </ul>
+                                <li className="list-group-item d-flex justify-content-between">
+                                    <span className={styles['summaryTotal']}>Total (USD)</span>
+                                    <p className={styles['valueSummaryTotal']}>${grandTotalPrice}</p>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <div className="col-md-7 col-lg-8">
+                    <div className={`col-md-6 col-lg-7 ${styles.colorBR}`}>
                         <h4 className="mb-3">Billing address</h4>
                         <form className="needs-validation">
                             <div className="row g-3">
-                                <div className="col-12">
+                                <div className="col-6">
                                     <label htmlFor="name" className="form-label">Name</label>
                                     <input
                                         type="text"
@@ -114,7 +131,7 @@ const Checkout = (props) => {
                                     />
                                 </div>
 
-                                <div className="col-12">
+                                <div className="col-6">
                                     <label htmlFor="phone" className="form-label">Phone number</label>
                                     <input
                                         type="text"
@@ -127,7 +144,7 @@ const Checkout = (props) => {
                                     />
                                 </div>
 
-                                <div className="col-12">
+                                <div className="col-6">
                                     <label htmlFor="address" className="form-label">Address</label>
                                     <input
                                         type="text"
@@ -140,6 +157,17 @@ const Checkout = (props) => {
                                     />
                                 </div>
 
+                                <div className="col-6">
+                                    <label htmlFor="note" className="form-label">Note</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="note"
+                                        value={note}
+                                        onChange={(e) => setNote(e.target.value)}
+                                        placeholder="Bla bla"
+                                    />
+                                </div>
                             </div>
 
                             <hr className="my-4" />
@@ -180,8 +208,8 @@ const Checkout = (props) => {
                             {
                                 paymentMethod === 'cash' ?
                                     (<button
-                                        type='button'
-                                        className="w-100 btn btn-primary btn-lg"
+                                        type='submit'
+                                        className="w-100 btn btn-primary btn-lg mb-2"
                                         onClick={handlePayByCash}
                                         style={{ background: '#222222', border: 'none' }}
                                     >
@@ -200,6 +228,7 @@ const Checkout = (props) => {
                 </div>
             </main>
         </div>
+
     );
 }
 

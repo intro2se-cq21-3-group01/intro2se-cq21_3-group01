@@ -6,6 +6,9 @@ const router = require("express").Router();
 // CREATE ORDER
 router.post("/", orderController.createOrder);
 
+// GET ORDER BY USER
+router.get("/", orderController.getOrdersByUser);
+
 // CREATE PAYMENT
 router.post("/paypal", async (req, res) => {
     try {

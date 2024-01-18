@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import axios from 'axios';
+import customAxios from '../../axios/customAxios';
+
 
 import styles from './SimilarProducts.module.css'
 
@@ -11,7 +12,7 @@ const SimilarProducts = () => {
 
     useEffect(() => {
         const getSimilarProducts = async () => {
-            const response = await axios.get(`http://localhost:8000/api/product/similar/${id}`);
+            const response = await customAxios.get(`/api/product/similar/${id}`);
 
             if (response.data.success) {
                 setSimilarProducts(response.data.data);

@@ -5,9 +5,10 @@ const authMiddleware = {
         return jwt.sign(
             {
                 id: user.id,
+                // isAdmin: user.isAdmin,
             },
             process.env.JWT_ACCESS_KEY,
-            { expiresIn: "365d" }
+            { expiresIn: "1d" }
         );
     },
     generateRefreshToken: (user) => {
@@ -20,27 +21,9 @@ const authMiddleware = {
             { expiresIn: "365d" }
         );
     },
-    generateResetPassWordToken: (user) => {
-        return jwt.sign(
-            {
-                id: user.id,
-            },
-            process.env.JWT_RESET_PASSWORD_KEY,
-            { expiresIn: "1d" }
-        );
-    },
     verifyToken: (token) => {
         try {
             const decoded = jwt.verify(token, process.env.JWT_ACCESS_KEY);
-
-            return decoded;
-        } catch (error) {
-            return null;
-        }
-    },
-    verifyResetPassWordToken: (token) => {
-        try {
-            const decoded = jwt.verify(token, process.env.JWT_RESET_PASSWORD_KEY);
 
             return decoded;
         } catch (error) {

@@ -4,21 +4,31 @@ const userSchema = new mongoose.Schema(
     {
         username: {
             type: String,
-            require: true,
+            required: true,
             unique: true,
         },
         email: {
             type: String,
-            require: true,
+            required: true,
             unique: true,
         },
         password: {
             type: String,
-            require: true,
+            required: true,
         },
-        isAdmin: {
-            type: Boolean,
-            default: false,
+        address: {
+            type: String,
+            default: ''
+        },
+        gender: {
+            type: String,
+            enum: ['MALE', 'FEMALE', 'OTHER'],
+            default: 'OTHER',
+        },
+        role: {
+            type: String,
+            enum: ['CUSTOMER', 'STAFF', 'ADMIN'],
+            default: 'CUSTOMER',
         },
     },
     { timestamps: true }

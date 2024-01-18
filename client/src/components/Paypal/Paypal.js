@@ -4,7 +4,7 @@ import { useCart } from '../../context/CartContext';
 import { useAuth } from '../../context/AuthContext';
 
 const PayPal = (props) => {
-    const { cartItems, totalPrice } = useCart();
+    const { cartItems, grandTotalPrice } = useCart();
     const { user } = useAuth();
     const { handlePayByCash } = props;
 
@@ -18,7 +18,7 @@ const PayPal = (props) => {
                 },
                 body: JSON.stringify({
                     cart: cartItems,
-                    totalPrice: totalPrice
+                    totalPrice: grandTotalPrice
                 }),
             });
 
@@ -49,7 +49,7 @@ const PayPal = (props) => {
                 },
                 body: JSON.stringify({
                     cart: cartItems,
-                    totalPrice: totalPrice
+                    totalPrice: grandTotalPrice
                 })
             });
 

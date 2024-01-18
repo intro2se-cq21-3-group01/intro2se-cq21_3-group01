@@ -1,23 +1,57 @@
-import { useMemo } from 'react';
+import { useEffect } from 'react';
 
 import styles from './Cart.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { useCart } from '../../context/CartContext';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import customAxios from '../../axios/customAxios';
 
 const Cart = () => {
-    const { cartItems, removeFromCart, updateQuantity } = useCart();
+    const { cartItems, grandTotalPrice, subTotalPrice, discount, discountCode,
+        removeFromCart, updateQuantity,
+        setGrandTotalPrice, setDiscount, setDiscountCode } = useCart();
     const navigate = useNavigate();
 
-    const subTotal = useMemo(() => {
-        let total = 0;
-        cartItems.forEach((cartItem) => {
-            total += cartItem.quantity * cartItem.product.price;
+    useEffect(() => {
+        const grandTotalPrice = subTotalPrice - discount > 0 ? subTotalPrice - discount : 0;
+
+        setGrandTotalPrice(grandTotalPrice.toFixed(2));
+        // eslint-disable-next-line
+    }, [subTotalPrice, discount, discountCode]);
+
+    const handleApplyCoupon = async () => {
+        if (!discountCode) {
+            toast.error("Please enter the coupon !");
+            return
+        }
+
+        const response = await customAxios.post("/api/coupon/apply", {
+            code: discountCode
         });
 
-        return total;
-    }, [cartItems]);
+        if (response && response.data && response.data.success) {
+            setDiscount(response.data.data);
+
+            toast.success(response.data.message);
+        }
+        else {
+            setDiscountCode("");
+        }
+    }
+
+    useEffect(() => {
+        if (!discountCode) {
+            setDiscount(0);
+        }
+
+        // eslint-disable-next-line
+    }, [discountCode])
+
+    const handleChangeDiscountCode = (e) => {
+        setDiscountCode(e.target.value.toUpperCase());
+    }
 
     return (
         cartItems?.length > 0 ? (
@@ -79,16 +113,28 @@ const Cart = () => {
 
                                 <div className="d-flex justify-content-between mb-3">
                                     <h5 className="text-uppercase">Subtotal</h5>
-                                    <h5>$ {subTotal.toFixed(2)}</h5>
+                                    <h5>$ {subTotalPrice}</h5>
                                 </div>
 
                                 <h5 className="text-uppercase mb-1">Coupon codes</h5>
 
-                                <div className="mb-5">
-                                    <div className="form-outline">
+                                <div className="mb-5 d-flex">
+                                    <div className="form-outline flex-grow-1">
                                         <input type="text" className="form-control form-control-lg"
                                             placeholder='Enter your coupon'
+                                            value={discountCode}
+                                            onChange={handleChangeDiscountCode}
                                         />
+                                    </div>
+                                    <div>
+                                        <button
+                                            type="button"
+                                            className="btn btn-dark btn-block btn-lg ms-1"
+                                            data-mdb-ripple-color="dark"
+                                            onClick={handleApplyCoupon}
+                                        >
+                                            Apply
+                                        </button>
                                     </div>
                                 </div>
 
@@ -96,12 +142,12 @@ const Cart = () => {
 
                                 <div className="d-flex justify-content-between mb-3">
                                     <h5 className="text-uppercase">All Discounts</h5>
-                                    <h5>$ 0</h5>
+                                    <h5>$ {discount}</h5>
                                 </div>
 
                                 <div className="d-flex justify-content-between mb-5">
                                     <h5 className="text-uppercase">Grand total</h5>
-                                    <h5>$ {subTotal.toFixed(2)}</h5>
+                                    <h5>$ {grandTotalPrice}</h5>
                                 </div>
 
                                 <button

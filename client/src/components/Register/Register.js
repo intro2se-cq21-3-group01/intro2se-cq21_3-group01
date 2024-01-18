@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
+import customAxios from '../../axios/customAxios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { toast } from 'react-toastify';
@@ -13,8 +13,15 @@ const Register = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
+    const navigate = useNavigate();
+
     const handleRegister = async (e) => {
         e.preventDefault();
+
+        if (!username || !email || !password) {
+            toast.error("Please enter email, username and password !");
+            return;
+        }
 
         const newUser = {
             email: email,
@@ -22,10 +29,11 @@ const Register = () => {
             password: password
         };
 
-        const respone = await axios.post('http://localhost:8000/api/auth/register', newUser);
+        const respone = await customAxios.post('/api/auth/register', newUser);
 
-        if (respone.data.success) {
+        if (respone && respone.data && respone.data.success) {
             toast.success(respone.data.message);
+            navigate('/login');
         }
     }
 

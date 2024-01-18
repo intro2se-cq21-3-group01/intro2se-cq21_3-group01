@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
+import customAxios from '../../axios/customAxios';
+
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
@@ -18,14 +19,19 @@ const Login = () => {
     const navigate = useNavigate();
 
     const handleLogin = async () => {
+        if (!username || !password) {
+            toast.error("Please enter both username and password !");
+            return;
+        }
+
         const user = {
             username: username,
             password: password
         }
 
-        const respone = await axios.post('http://localhost:8000/api/auth/login', user);
+        const respone = await customAxios.post('/api/auth/login', user);
 
-        if (respone.data.success) {
+        if (respone && respone.data && respone.data.success) {
             const userData = {
                 username: respone.data.data.username,
                 isAuthenticated: true,
@@ -66,7 +72,11 @@ const Login = () => {
                                 value={password}
                                 onChange={(e) => { setPassword(e.target.value) }}
                             />
-                            <a className={styles['forgot-password']} href='/user/forgot-password'>Forgot password?</a>
+                            
+                            <div className={styles['forgotPassword']}>
+                                <div></div>
+                                <Link className={styles['forgot-password']} to='/user/forgot-password'>Forgot password?</Link>
+                            </div>
                             <button className={styles['btn-next']} onClick={handleLogin}>NEXT</button>
 
                             <p className={styles['login-other']}><b>Login</b> with Others</p>

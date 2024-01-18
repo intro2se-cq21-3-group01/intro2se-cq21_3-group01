@@ -12,7 +12,7 @@
     height       : 488px;
     border       : 1.54px solid #D9D9D9;
     border-radius: 15px;
-    margin-top   : 30px;
+    margin-top   : 45px;
     position     : relative;
 }
 
@@ -53,8 +53,8 @@
 }
 
 .product-item-price {
-    color      : #E00000;
-    font-family: FOT-MatisseV Pro;
+    color      : #0388A6;
+    font-family: 'Quando', Tahoma, Geneva, Verdana, sans-serif !important;
     font-size  : 17px !important;
     font-weight: 900 !important;
 }

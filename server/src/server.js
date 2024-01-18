@@ -7,6 +7,7 @@ const productRoute = require("./routes/product");
 const categoryRoute = require("./routes/category");
 const authRoute = require("./routes/auth");
 const orderRoute = require("./routes/order");
+const userRoute = require("./routes/user");
 
 const conecctToDB = require('./configs/db');
 
@@ -28,6 +29,7 @@ app.use("/api/product", productRoute);
 app.use("/api/category", categoryRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/orders", orderRoute);
+app.use("/api/user", userRoute);
 
 app.listen(process.env.PORT || 8000, () => {
     console.log("Server is running...");
