@@ -47,9 +47,6 @@ const Header = () => {
                                     <NavLink className="nav-link" aria-current="page" activeClassName="active" to="/">Home</NavLink>
                                 </li>
                                 <li className="nav-item" style={{ fontSize: '18px' }}>
-                                    <NavLink className="nav-link" activeClassName="active" to="/aboutus">About Us</NavLink>
-                                </li>
-                                <li className="nav-item" style={{ fontSize: '18px' }}>
                                     <NavLink className="nav-link" activeClassName="active" to="/product">Product</NavLink>
                                 </li>
                                 <span className={styles.slice}></span>

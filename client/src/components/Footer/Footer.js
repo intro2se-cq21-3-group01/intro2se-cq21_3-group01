@@ -16,14 +16,12 @@ import styles from './Footer.module.css';
 const Footer = () => {
     return (
         <>
-         <div className={`${styles.footer}`}>
-            <div className="container">
-                <div className="row d-flex justify-content-center">
-                    <div className="col sm-4">
-                        <div className='d-flex justify-content-center'>
+            <div className={`${styles.footer} container-fluid`}>
+                <div className="row d-flex justify-content-around">
+                    <div className="col-lg-3 col-md-6">
                         <div className="footer-logo">
                             <h1>Contact Us</h1>
-                            <div className="d-flex mt-4">
+                            <div className="d-flex">
                                 <FontAwesomeIcon icon={faLocationDot} />
                                 <h6>8th Floor, 370 Hudson St, New York, VietNam</h6>
                             </div>
@@ -36,13 +34,10 @@ const Footer = () => {
                                 <h6>Linda@gmail.com</h6>
                             </div>
                         </div>
-                        </div>
                     </div>
-                    <div className="col sm-4">
-                        <div className='d-flex justify-content-center'>
-                        <div className="footer-time">
+                    <div className="col-lg-3 col-md-4 col-sm-6">
                         <h1>Opening Hours</h1>
-                        <div className={`mt-4 ${styles['set']}`}>
+                        <div className={styles.set}>
                             <div className="set1">
                                 <h6>Monday-Friday: </h6>
                             </div>
@@ -62,14 +57,10 @@ const Footer = () => {
                                 <h6 htmlFor="soTH">8:30 AM - 18:00 PM</h6>
                             </div>
                         </div>
-                        </div>
-                        </div>
                     </div>
-                    <div className="col sm-4">
-                        <div className='d-flex justify-content-center'>
-                        <div className="footer-gallery">
+                    <div className="col-lg-2 col-md-4 col-sm-6">
                         <h1>Gallery</h1>
-                        <div className={`mt-4 ${styles['footerSet']}`}>
+                        <div className={styles.footerSet}>
                             <div className="set4">
                                 <img className={styles.set3} src={cookies1Img} alt="" />
                             </div>
@@ -99,15 +90,11 @@ const Footer = () => {
                             </div>
                         </div>
                     </div>
-                    </div>
-                    </div>
                 </div>
             </div>
-            </div>
             <div className='container-fluid'>
-                <div className="row" style={{backgroundColor: '#111111'}}>
-                    <div className={`col sm-6 ${styles['textEdit']}`}>
-                        <div className={`footer-social ${styles['textEditWithMargin']}`}>
+                <div className="row d-flex justify-content-between" style={{ backgroundColor: '#111111' }}>
+                    <div className="col-lg-3 col-md-6">
                         <div className={styles['footer-social-media']}>
                             <span className={styles['social-media']}>
                                 <FontAwesomeIcon icon={faSquareFacebook} />
@@ -119,15 +106,10 @@ const Footer = () => {
                                 <FontAwesomeIcon icon={faSquareYoutube} />
                             </span>
                         </div>
-                        </div>
                     </div>
-                    <div className={`col sm-6 ${styles['textEdit']}`}>
-                        <div className='d-flex justify-content-center'>
-                        <div className="footer-copyright">
-                    Copyright © 2023 All rights reserved | <i className={styles['titleText']}>Luxury cookies</i>
+                    <div className={`col-lg-5 col-md-3 ${styles['textEdit']}`}>
+                        Copyright © 2023 All rights reserved | <i className={styles['titleText']}>Luxury cookies</i>
                     </div>
-                    </div> 
-                    </div> 
                 </div>
             </div>
         </>

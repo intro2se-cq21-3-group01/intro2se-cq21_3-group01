@@ -1,10 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import customAxios from '../../axios/customAxios';
-
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { toast } from 'react-toastify';
 
 import { useAuth } from '../../context/AuthContext';
@@ -72,23 +68,8 @@ const Login = () => {
                                 value={password}
                                 onChange={(e) => { setPassword(e.target.value) }}
                             />
-                            
-                            <div className={styles['forgotPassword']}>
-                                <div></div>
-                                <Link className={styles['forgot-password']} to='/user/forgot-password'>Forgot password?</Link>
-                            </div>
+                            <Link className={styles['forgot-password']} to='/user/forgot-password'>Forgot password?</Link>
                             <button className={styles['btn-next']} onClick={handleLogin}>NEXT</button>
-
-                            <p className={styles['login-other']}><b>Login</b> with Others</p>
-
-                            <button className={styles['btn-google']}>
-                                <FontAwesomeIcon icon={faGoogle} className='me-2' />
-                                Login in with <b>Google</b>
-                            </button>
-                            <button className={styles['btn-facebook']}>
-                                <FontAwesomeIcon icon={faFacebook} className='me-2' />
-                                Login in with <b>Facebook</b>
-                            </button>
 
                             <p>Don't have an account yet?
                                 <a className={styles['register']} href='/register'>Register</a>

@@ -10,32 +10,32 @@ import { Link } from 'react-router-dom'
 export default function Home() {
     return (
         <div className='container mt-4'>
-
             <div className='row'>
                 <div className='col'>
-                    <div className='position-relative'>
+                    {/* <div className='position-relative'> */}
+                    <div className=''>
                         <img src={Banner01} className='img-fluid rounded-2' alt="Banner01" />
-                        <div className={`${styles['position-absolute']} position-absolute`}>
+                        <div className={`${styles['position-absolute']} position-absolute  `}>
                             <h1 style={{ textShadow: '2px 2px 4px #000000' }}>Luxury Cookies</h1>
                             <p className='m-0'>The best Cookies you’ll ever taste.</p>
                             <p>Not let the name deceive you, We also serve bread and pantries.</p>
-                            <Link to="/product" className='btn btn-primary btn-sm' style={{ backgroundColor: '#8C6645', border: 'none' }}> Let’s try some </Link>
+                            <Link to="/product" className='btn btn-primary btn-sm' style={{ backgroundColor: '#965C5Bdb', border: '1px solid #D9D9D9' }}> Let’s try some </Link>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div className='row mt-3' style={{ backgroundColor: '#EFEFEF', borderRadius: '10px', transform: 'scale(0.93)' }}>
+            <div className='row'>
                 <div className='col-sm-6 mt-5'>
-                    <h1 className={`${styles['middleTemplate']} mt-5`} style={{ textShadow: '2px 2px 4px #A6A498' }}>
+                    <h1 className={`${styles['middleTemplate']} mt-5`}>
                         Luxury Cookies
                     </h1>
-                    <h1 className={`${styles['middleTemplate']} mt-2`} style={{ textShadow: '2px 2px 4px #A6A498' }}>
+                    <h1 className={`${styles['middleTemplate']} mt-2`}>
                         Welcome
                     </h1>
                     <p className={styles.middleTemplate}>Lorem ipsum dolor sit amet consectetur. Purus nisl sit id aliquam lectus. Morbi rutrum viverra blandit posuere ipsum pellentesque.</p>
                     <div className='d-flex justify-content-center mt-5'>
-                        <button type='button' className='btn btn-primary btn-sm' style={{ backgroundColor: '#734930', border: '1px solid #D9D9D9' }}>More about us</button>
+                        <button type='button' className='btn btn-primary btn-sm' style={{ backgroundColor: '#965C5Bdb', border: '1px solid #D9D9D9' }}>More about us</button>
                     </div>
                 </div>
                 <div className='col-sm-6'>
@@ -46,8 +46,9 @@ export default function Home() {
             </div>
 
             <div className='row'>
-                <h1 className={`${styles['middleTemplate']} p-3`} style={{ textShadow: '2px 2px 4px #A6A498' }}
+                <h1 className={`${styles['middleTemplate']} p-3`}
                 >Specialties </h1>
+                <div className='row'>
                     <div className='col sm-4'>
                         <div className='d-flex justify-content-center'>
                             <div className='card' style={{ width: 350 }}>
@@ -83,6 +84,7 @@ export default function Home() {
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
         </div>
     )

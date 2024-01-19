@@ -1,16 +1,12 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { faHeart } from '@fortawesome/free-regular-svg-icons';
-
 import styles from './ProductItem.module.css'
 import { useCart } from '../../context/CartContext';
 import { toast } from 'react-toastify';
 
 const ProductItem = (props) => {
-    const { _id, imgUrl, name, price, quantity, stars } = props.product;
+    const { _id, imgUrl, name, price, quantity } = props.product;
 
     const { addToCart } = useCart();
 
@@ -27,7 +23,7 @@ const ProductItem = (props) => {
             <Link to={`/product/${_id}`}>
                 <img src={imgUrl} className="card-img-top" alt="Product" />
             </Link>
-            <FontAwesomeIcon icon={faHeart} className={styles['product-item-heart']} />
+            {/* <FontAwesomeIcon icon={faHeart} className={styles['product-item-heart']} /> */}
             <div className="card-body">
                 <div className="card-title">
                     <Link to={`/product/${_id}`} style={{ textDecoration: 'none' }}>
@@ -36,9 +32,9 @@ const ProductItem = (props) => {
                     <h6 className={styles['product-item-price']}>$ {price}</h6>
                 </div>
                 <div className={styles['product-item-stars']}>
-                    {[...Array(stars)].map((_, index) => (
+                    {/* {[...Array(stars)].map((_, index) => (
                         <FontAwesomeIcon key={index} icon={faStar} className={styles['star-icon']} />
-                    ))}
+                    ))} */}
                 </div>
                 <button
                     className={` ${styles['product-item-btn']} btn btn-primary`}

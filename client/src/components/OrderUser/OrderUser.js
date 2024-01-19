@@ -52,7 +52,6 @@ const OrderUser = () => {
                                             <th scope="col">Status</th>
                                             <th scope="col">Address</th>
                                             <th scope="col">Date</th>
-                                            <th scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody className='table-group-divider'>
@@ -73,12 +72,6 @@ const OrderUser = () => {
                                                 <td>{order.status}</td>
                                                 <td>{order.address}</td>
                                                 <td>{order.date}</td>
-                                                <td>
-                                                    <button
-                                                        disabled={order.status !== 'PENDING' && order.status !== 'PROCESSING'}
-                                                        className={styles['btn-cancel']}
-                                                    >Cancel</button>
-                                                </td>
                                             </tr>
                                         ))}
                                     </tbody>
