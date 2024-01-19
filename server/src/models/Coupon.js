@@ -15,6 +15,10 @@ const counponSchema = new mongoose.Schema({
         type: Number,
         required: true,
         default: 9999
+    },
+    description: {
+        type: String,
+        required: true
     }
 });
 

@@ -13,6 +13,7 @@ const analysisRoute = require("./routes/analysis");
 
 const productAdminRoute = require("./routes/Admin/product")
 const employeeAdminRoute = require('./routes/Admin/employee');
+const couponsAdminRoute = require('./routes/Admin/coupon');
 
 const conecctToDB = require('./configs/db');
 const { countDocuments } = require("./models/Coupon");
@@ -41,6 +42,7 @@ app.use("/api/analysis", analysisRoute);
 
 app.use("/api/admin/product", productAdminRoute);
 app.use("/api/admin/employee", employeeAdminRoute);
+app.use("/api/admin/coupon", couponsAdminRoute);
 
 app.listen(process.env.PORT || 8000, () => {
     console.log("Server is running...");
