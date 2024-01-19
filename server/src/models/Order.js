@@ -12,7 +12,7 @@ const orderSchema = new mongoose.Schema({
         required: true
     },
     phone: {
-        type: Number,
+        type: String,
         required: true
     },
     address: {
@@ -35,6 +35,9 @@ const orderSchema = new mongoose.Schema({
     totalPrice: {
         type: Number,
         required: true
+    },
+    note: {
+        type: String,
     },
     status: {
         type: String,

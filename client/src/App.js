@@ -33,7 +33,6 @@ const App = () => {
         <Route path="/user/orders" element={<OrderUserPage />} />
         <Route path="/user/forgot-password" element={<ForgotPasswordPage />} />
         <Route path="/user/change-password" element={<ChangePasswordPage />} />
-
       </Routes>
 
       <ToastContainer
