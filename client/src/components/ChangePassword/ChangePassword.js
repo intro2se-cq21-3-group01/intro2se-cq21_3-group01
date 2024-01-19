@@ -67,14 +67,14 @@ const ChangePassword = () => {
                             <br />
                             <input
                                 type='password'
-                                placeholder='Re-enter current password'
+                                placeholder='New password'
                                 value={reenteredPassword}
                                 onChange={(e) => setReenteredPassword(e.target.value)}
                             />
                             <br />
                             <input
                                 type='password'
-                                placeholder='New password'
+                                placeholder='Re-enter new password'
                                 value={newPassword}
                                 onChange={(e) => setNewPassword(e.target.value)}
                             />

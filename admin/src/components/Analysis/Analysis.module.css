@@ -101,3 +101,12 @@ body {
     margin-left: 60px;
     margin-right: -50px;
 }
+
+.navbarEdit {
+    background-color: #e2e3e5;
+}
+
+
+.navbarBrand {
+    font-family: 'Abhaya libre';
+}

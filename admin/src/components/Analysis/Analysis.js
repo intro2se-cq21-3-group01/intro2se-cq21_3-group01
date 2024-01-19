@@ -1,10 +1,11 @@
-import { faShoppingCart, faMoneyBill } from "@fortawesome/free-solid-svg-icons";
+import { faShoppingCart, faMoneyBill, faHandPeace } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
 import customAxios from "../../axios/customAxios";
 import styles from './Analysis.module.css';
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { AuthContext } from '../context/auth'
 
 const Analysis = () => {
     const [totalOrders, setTotalOrders] = useState(0);
@@ -15,6 +16,7 @@ const Analysis = () => {
     const [timeRange, setTimeRange] = useState("year");
     const [chartData, setChartData] = useState([]);
 
+    const { user , logOut} = useContext(AuthContext);
     useEffect(() => {
         const analyzeSales = async () => {
             const responseOrderCount = await customAxios.get(`/api/analysis/ordercount/${timeRange}`);
@@ -50,6 +52,14 @@ const Analysis = () => {
 
     return (
         <div className={`col-9  ${styles.col9}`}>
+            <nav className={`navbar ${styles.navbarEdit}`}>
+                <div className="container d-flex">
+                    <h2 className={`navbar-brand  ${styles.navbarBrand}`}>Hello,{user.fullname}<FontAwesomeIcon icon={faHandPeace} /></h2>
+                    <div className="d-flex">
+                        <button className="btn btn-dark me-5" onClick={() => { logOut() }}>Log out</button>
+                    </div>
+                </div>
+            </nav>
             <div className={styles['analysis-container']}>
                 <div className="container-fluid mt-3">
                     <div className="row">
@@ -70,7 +80,7 @@ const Analysis = () => {
                     <div className="row mt-5">
                         <div className="col-lg-3 col-sm-6" >
                             <div className={`card ${styles['gradient-1']}`}>
-                                <div className="card-body" style={{ fontFamily:timeRange }}>
+                                <div className="card-body" style={{ fontFamily: timeRange }}>
                                     <h3 className="card-title text-white">Total Orders</h3>
                                     <div className="d-inline-block">
                                         <h2 className="text-white">{totalOrders}</h2>
@@ -86,7 +96,7 @@ const Analysis = () => {
                         </div>
                         <div className="col-lg-3 col-sm-6">
                             <div className={`card ${styles['gradient-2']}`}>
-                                <div className="card-body" style={{ fontFamily:timeRange }}>
+                                <div className="card-body" style={{ fontFamily: timeRange }}>
                                     <h3 className="card-title text-white">Total Revenue</h3>
                                     <div className="d-inline-block">
                                         <h2 className="text-white">$ {totalRevenue.toFixed(2)}</h2>
@@ -106,7 +116,7 @@ const Analysis = () => {
                     <div className="row m-4">
                         <div className={`col-lg-6 col-sm-6 ${styles['chart']}`}>
                             {timeRange !== "day" && timeRange !== "all" &&
-                                <LineChart width={650} height={200} data={chartData}  margin={{ top: 20, right: 30, left: 20, bottom: 5 }} style={{ background: '#f0f0f0', borderRadius: '10px'}}>
+                                <LineChart width={650} height={200} data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }} style={{ background: '#f0f0f0', borderRadius: '10px' }}>
                                     <CartesianGrid strokeDasharray="3 3" />
                                     <XAxis dataKey="name" />
                                     <YAxis />
