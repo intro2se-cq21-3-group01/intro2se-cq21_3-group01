@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useContext, useMemo } from "react";
 import { Link } from "react-router-dom";
 import queryString from 'query-string'
-import axios from 'axios';
+import customAxios from "../../axios/customAxios";
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHandPeace, faArrowDownWideShort, faPlus, faPen, faTrashCan} from '@fortawesome/free-solid-svg-icons';
 
@@ -10,7 +11,7 @@ import styles from './menu.module.css';
 import Search from "../Share/Search";
 import Pagination from "../Share/Pagination";
 import { AuthContext } from '../context/auth';
-
+import { toast } from 'react-toastify';
 const MenuEmployee = (props) => {
     const [products, setProducts] = useState([]);
     const [totalCategories, setTotalCategories] = useState('');
@@ -19,6 +20,8 @@ const MenuEmployee = (props) => {
     const [totalAmount, setTotalAmount] = useState('');
 
     const { user, logOut } = useContext(AuthContext);
+
+    const navigate = useNavigate();
 
     const [filter, setFilter] = useState({
         page: '1',
@@ -35,9 +38,11 @@ const MenuEmployee = (props) => {
     useEffect(() => {
         const query = '?' + queryString.stringify(memoizedFilter);
         const getAllEmployees = async () => {
+            if(user.isAdmin !== true){
+                navigate("/")
+            }
             try {
-                const response = await axios.get(`http://localhost:8000/api/admin/product/${query}`);
-                console.log("data1", response.data.data);
+                const response = await customAxios.get(`/api/admin/product/${query}`);
                 setProducts(response.data.data);
                 setTotalPage(response.data.totalPage);
                 setTotalCategories(response.data.totalCategories);
@@ -49,12 +54,13 @@ const MenuEmployee = (props) => {
             }
         }
         getAllEmployees();
-    }, [memoizedFilter]);
+    }, [memoizedFilter, navigate, user]);
     const handleDeleteProduct = async (user) => {
         try {
             const id = String(user._id);
-            const response = await axios.get(`http://localhost:8000/api/admin/product/delete/${id}`);
+            const response = await customAxios.get(`/api/admin/product/delete/${id}`);
             if (response.data.success) {
+                toast.success("Delete successfully !");
                 setFilter({
                     ...filter,
                     status: !filter.status

@@ -96,3 +96,12 @@ th {
     height : 100%;
     padding: 0px !important;
 }
+
+.navbarEdit {
+    background-color: #e2e3e5;
+}
+
+.navbarBrand {
+    font-family: 'Abhaya libre';
+}
+  

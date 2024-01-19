@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import customAxios from "../../axios/customAxios";
 import { AuthContext } from '../context/auth'
 import { toast } from 'react-toastify';
 
@@ -57,10 +57,11 @@ const AddEmployee = () => {
                 phone: phone,
             }
     
-            const response = await axios.post('http://localhost:8000/api/admin/employee/add', employee);
+            const response = await customAxios.post('/api/admin/employee/add', employee);
     
             if (response.data.success) {
                 console.log(response.data);
+                toast.success("Add successfully !");
                 navigate('/employee');
             } else {
                 console.error("Failed to add employee. Check the response for more details.");

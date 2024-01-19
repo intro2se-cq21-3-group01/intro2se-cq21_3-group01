@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from 'react-router';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { AuthContext } from '../context/auth'
+import customAxios from "../../axios/customAxios";
 import { toast } from 'react-toastify';
 
 import styles from './EditEmployee.module.css';
 
-const EditEmployee = () => {
+const EditCategory = () => {
     const { id } = useParams();
+    const { user } = useContext(AuthContext);
     const [fullname, setFullname] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -17,11 +19,15 @@ const EditEmployee = () => {
     const [datestart, setDateStart] = useState('');
     const [phone, setPhone] = useState('');
     const [image, setImage] = useState('');
-
+    const navigate = useNavigate();
+    
     useEffect(() => {
         const getEmployee = async () => {
+            if(user.isAdmin !== true){
+                navigate("/")
+            }
             try {
-                const response = await axios.get(`http://localhost:8000/api/admin/employee/${id}`);
+                const response = await customAxios.get(`/api/admin/employee/${id}`);
                 if (response.data.success) {
                     setFullname(response.data.data.fullname);
                     setUsername(response.data.data.username);
@@ -47,9 +53,9 @@ const EditEmployee = () => {
             }
         }
         getEmployee();
-    }, [id]);
+    }, [id,navigate, user]);
 
-    const navigate = useNavigate();
+
 
     function convertToBase64(e) {
         console.log(e);
@@ -82,10 +88,11 @@ const EditEmployee = () => {
             phone: phone,
         }
 
-        const respone = await axios.post(`http://localhost:8000/api/admin/employee/update/${id}`, employee);
+        const respone = await customAxios.post(`/api/admin/employee/update/${id}`, employee);
 
         if (respone.data.success) {
             console.log(respone.data);
+            toast.success("Update successfully !");
             navigate('/employee');
         }
     }
@@ -189,4 +196,4 @@ const EditEmployee = () => {
     );
 }
 
-export default EditEmployee;
+export default EditCategory;

@@ -1,7 +1,7 @@
 import React, { useState , useEffect, useContext } from "react";
 import { useParams } from 'react-router';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import customAxios from "../../axios/customAxios";
 import { toast } from 'react-toastify';
 
 import { AuthContext } from '../context/auth'
@@ -29,7 +29,7 @@ const EditEmployee = () => {
     useEffect(() => {
         const getProduct = async () => {
             try {
-                const response = await axios.get(`http://localhost:8000/api/admin/product/${id}`);
+                const response = await customAxios.get(`/api/admin/product/${id}`);
                 if (response.data.success) {
                     setName(response.data.data.name);
                     setPrice(response.data.data.price);
@@ -73,10 +73,11 @@ const EditEmployee = () => {
         }
 
         console.log(product);
-        const respone = await axios.post(`http://localhost:8000/api/admin/product/update/${id}`, product);
+        const respone = await customAxios.post(`/api/admin/product/update/${id}`, product);
 
         if (respone.data.success) {
             console.log(respone.data);
+            toast.success("Update successfully !");
             navigate('/product');
         }
     }
@@ -86,7 +87,7 @@ const EditEmployee = () => {
                 if(user.isAdmin !== true){
                     navigate("/")
                 }
-                const respone = await axios.get('http://localhost:8000/api/category/');
+                const respone = await customAxios.get('/api/category/');
                 setCategory(respone.data.data)
 
             } catch (error) {

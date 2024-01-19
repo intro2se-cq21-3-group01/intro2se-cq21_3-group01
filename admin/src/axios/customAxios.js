@@ -5,13 +5,16 @@ const customAxios = axios.create({
     baseURL: 'http://localhost:8000'
 });
 
+
 customAxios.defaults.withCredentials = true;
 
 if (typeof localStorage !== 'undefined') {
     const accessToken = localStorage.getItem('accessToken');
-    if (accessToken) {
-        customAxios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+    const storedJWT = JSON.parse(accessToken);
+    if (storedJWT) {
+        customAxios.defaults.headers.common['authorization'] = `Bearer ${storedJWT}`;
     }
+
 }
 
 customAxios.interceptors.request.use(function (config) {
