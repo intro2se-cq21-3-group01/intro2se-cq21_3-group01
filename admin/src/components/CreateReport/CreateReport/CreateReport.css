@@ -1,0 +1,80 @@
+/* CSS */
+@import url("https://fonts.googleapis.com/css2?family=Abhaya+Libre&family=Inter&family=Lato:wght@700&display=swap");
+
+frame-createReport {
+  position: relative;
+  height: 864px;
+  width: 958px;
+}
+
+.create-performance-report {
+  position: absolute;
+  height: 419px;
+  width: 955px;
+}
+
+.create-sale-report {
+  position: absolute;
+  height: 419px;
+  width: 955px;
+  top: 445px;
+}
+
+.text-title {
+  position: absolute;
+  top: 0px;
+  left: 25px;
+  color: #000000;
+  line-height: 32.9px;
+  font-family: "Lato", sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.form-calendar {
+  position: absolute;
+  top: 42px;
+  background-color: #e9e8e8;
+  height: 377px;
+  width: 957px;
+}
+
+.label-text {
+  position: absolute;
+  top: 42px;
+  left: 66px;
+  color: #000000;
+  font-family: "Abhaya Libre", sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 29px;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendar {
+  position: absolute;
+  top: 42px;
+  bottom: 43px;
+  left: 247px;
+  right: 32px;
+}
+
+.button {
+  position: absolute;
+  top: 312px;
+  bottom: 24px;
+  left: 769px;
+  right: 49px;
+  width: 139px;
+  height: 41px;
+  background-color: rgba(18, 112, 176, 1);
+  border: none;
+  border-radius: 20px;
+  color: #ffffff;
+  font-family: "Lato", sans-serif;
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+}
