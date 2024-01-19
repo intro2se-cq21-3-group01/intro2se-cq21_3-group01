@@ -1,24 +1,28 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import ReactPaginate from 'react-paginate';
-
 import styles from "./MangeOrder.module.css";
 import customAxios from "../../axios/customAxios";
-import { faPenToSquare, faTrash, faFloppyDisk, faBan } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from 'react-router-dom';
+import { faPenToSquare, faTrash, faFloppyDisk, faBan, faHandPeace } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { toast } from "react-toastify";
 
+import { AuthContext } from '../context/auth'
 const ManageOrder = () => {
     const [orders, setOrders] = useState([]);
     const [filter, setFilter] = useState("ALL");
     const [searchQuery, setSearchQuery] = useState("");
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [currentLimit] = useState(4);
+    const [currentLimit] = useState(3);
     const [totalPages, setTotalPages] = useState(0);
 
     const [isEditing, setIsEditing] = useState(false);
     const [editedOrder, setEditedOrder] = useState({});
+    const { user, jwt , logOut } = useContext(AuthContext);
 
+    const navigate = useNavigate();
+    
     const getOrders = async () => {
         const response = await customAxios.get(
             `/api/orders/filter/?page=${currentPage}&limit=${currentLimit}&filter=${filter}&searchQuery=${searchQuery}`
@@ -31,9 +35,12 @@ const ManageOrder = () => {
     }
 
     useEffect(() => {
+        if(user.isAdmin === true){
+            navigate("/")
+        }
         getOrders();
 
-    }, [filter, currentPage, searchQuery]);
+    }, [filter, currentPage, searchQuery, jwt, navigate, user]);
 
     const handleChangeStatus = async (e, order) => {
         const response = await customAxios.put(`/api/orders/change-status`,
@@ -87,6 +94,15 @@ const ManageOrder = () => {
         <>
 
             <div className={`col-9  ${styles.col9}`}>
+                <nav className={`navbar ${styles.navbarEdit}`}>
+                    <div className="container d-flex">
+                        <h2 className={`navbar-brand  ${styles.navbarBrand}`}>Hello,{user.fullname}<FontAwesomeIcon icon={faHandPeace} /></h2>
+                        <div className="d-flex">
+                            <button className="btn btn-dark me-5" onClick={() => { logOut() }}>Log out</button>
+                        </div>
+                    </div>
+                </nav>
+
                 <div className={styles['order-container']} >
                     <div className="container mt-3">
                         <h2 className={styles['order-header']}>Manage Order</h2>

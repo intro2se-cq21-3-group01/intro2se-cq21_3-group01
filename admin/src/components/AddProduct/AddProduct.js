@@ -1,6 +1,6 @@
 import React, { useState , useEffect, useContext } from "react";
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import customAxios from "../../axios/customAxios";
 import { AuthContext } from '../context/auth'
 import { toast } from 'react-toastify';
 
@@ -49,10 +49,11 @@ const AddEmployee = () => {
         }
 
         console.log(product);
-        const respone = await axios.post('http://localhost:8000/api/admin/product/add', product);
+        const respone = await customAxios.post('/api/admin/product/add', product);
 
         if (respone.data.success) {
             console.log(respone.data);
+            toast.success("Add successfully !");
             navigate('/product');
         }
     }
@@ -62,7 +63,7 @@ const AddEmployee = () => {
                 if(user.isAdmin !== true){
                     navigate("/")
                 }
-                const respone = await axios.get('http://localhost:8000/api/category/');
+                const respone = await customAxios.get('/api/category/');
                 setCategory(respone.data.data)
 
             } catch (error) {

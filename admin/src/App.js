@@ -2,21 +2,27 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 
-import AuthContextProvider from './components/context/auth'
+import AuthContextProvider from './components/context/auth';
 
 import LoginPage from "./components/Login/Login";
 import EmployeePage from "./components/Employee/Employee";
 import DetailEmployee from "./components/DetailEmployee/DetailEmployee";
 import AddEmployee from "./components/AddEmployee/AddEmployee";
 import UpdateEmployee from "./components/EditEmployee/EditEmployee";
-import Menu from "./components/Share/Menu"
-import MenuManagement from "./components/MenuManagement/menu"
+import Menu from "./components/Share/Menu";
+import MenuManagement from "./components/MenuManagement/menu";
 import AddProduct from "./components/AddProduct/AddProduct";
-import UpdateProduct from "./components/EditProduct/EditProduct"
+import UpdateProduct from "./components/EditProduct/EditProduct";
 
 import styles from './styles.module.css';
 import Analysis from "./components/Analysis/Analysis";
 import ManageOrder from "./components/ManageOrder/ManageOrder";
+import CategoryList from "./components/Category/Category";
+import AddCategory from "./components/AddCategory/AddCategory";
+import EditCategory from "./components/EditCategory/EditCategory";
+import CouponList from "./components/Coupon/Coupon";
+import AddCoupon from "./components/AddCoupon/AddCoupon";
+import UpdateCoupon from "./components/EditCoupon/EditCoupon";
 
 const App = () => {
   return (
@@ -39,7 +45,13 @@ const App = () => {
 
               <Route path="/analysis" element={<Analysis />} />
               <Route path="/order" element={<ManageOrder />} />
+              <Route path="/category" element={<CategoryList />} />
+              <Route path="/category/add" element={<AddCategory />} />
+              <Route path="/category/update/:id" element={<EditCategory />} />
 
+              <Route path="/coupon" element={<CouponList />} />
+              <Route path="/coupon/add" element={<AddCoupon />} />
+              <Route path="/coupon/update/:id" element={<UpdateCoupon />} />
             </Routes>
             {/* Hiển thị thông báo */}
             <ToastContainer
@@ -56,9 +68,6 @@ const App = () => {
             />
           </div>
         </div>
-        <Routes>
-
-        </Routes>
       </AuthContextProvider>
     </Router>
   );

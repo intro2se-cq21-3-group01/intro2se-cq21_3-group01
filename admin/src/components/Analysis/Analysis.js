@@ -1,4 +1,4 @@
-import { faShoppingCart, faMoneyBill, faCookieBite, faBan } from "@fortawesome/free-solid-svg-icons";
+import { faShoppingCart, faMoneyBill } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 

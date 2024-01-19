@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faUser, faCartShopping, faChartLine } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faUser, faCartShopping, faChartLine, faHockeyPuck, faDollarSign } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/auth'
@@ -35,6 +35,18 @@ function Menu() {
             link: "analysis",
             icon: faChartLine
         },
+        {
+            item: "Category Management",
+            permission: false,
+            link: "category",
+            icon: faHockeyPuck
+        },
+        {
+            item: "Coupon Management",
+            permission: false,
+            link: "coupon",
+            icon: faDollarSign
+        },
         // Add other menu items as needed
     ];
     useEffect(() => {
@@ -57,7 +69,7 @@ function Menu() {
                             item.permission === user.isAdmin ? (
                                 // Render một mục menu nếu có quyền truy cập (permission === true)
                                 <NavLink to={"/" + item.link} className={`${styles.NavLinkEdit}`} key={index}>
-                                    <li className={`${styles.titleItem}`} activeClassName={`${styles.active} active`}>
+                                    <li className={`${styles.titleItem}`} activeclassname={`${styles.active} active`}>
                                         <div className={`d-flex ${styles.itemDashboard}`}>
                                             <FontAwesomeIcon icon={item.icon} className={styles.icon} /> {item.item}
                                         </div>
