@@ -8,6 +8,11 @@ const ChangePassword = () => {
     const [reenteredPassword, setReenteredPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
 
+    const isPasswordValid = (password) => {
+        const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+        return passwordRegex.test(password);
+    };
+
     const handleChangePassword = async () => {
         if (!currentPassword || !reenteredPassword || !newPassword) {
             toast.error("Please fill in all fields!");
@@ -16,6 +21,11 @@ const ChangePassword = () => {
 
         if (reenteredPassword !== newPassword) {
             toast.error("New password and re-entered password do not match!");
+            return;
+        }
+
+        if (!isPasswordValid(newPassword)) {
+            toast.error("Password must have at least 1 uppercase letter, 1 number, and be 8 characters long!");
             return;
         }
 
