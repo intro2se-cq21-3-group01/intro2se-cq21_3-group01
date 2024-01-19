@@ -1,13 +1,27 @@
 const paypalController = require("../controllers/paypalController");
 const orderController = require("../controllers/orderController");
+const authMiddleware = require("../middleware/authMiddleware");
 
 const router = require("express").Router();
+
+// GET ORDER
+router.get("/filter", orderController.getAllOrders);
 
 // CREATE ORDER
 router.post("/", orderController.createOrder);
 
+// DELETE ORDER BY ID
+router.delete('/:orderId', orderController.deleteOrderById);
+
+// UPDATE ORDER BY ID
+router.put("/update/:orderId", orderController.updateOrderById);
+
 // GET ORDER BY USER
 router.get("/", orderController.getOrdersByUser);
+
+// CHANGE STATUS ORDER
+router.put("/change-status", orderController.changeStatusOrder);
+
 
 // CREATE PAYMENT
 router.post("/paypal", async (req, res) => {

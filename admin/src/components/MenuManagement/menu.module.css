@@ -1,0 +1,145 @@
+.container {
+    height: 100%;
+  }
+  
+  .row {
+    height: 100%;
+  }
+  
+  .col-3,
+  .col-9 {
+    height: 100%;
+  }
+  
+  .title {
+    color: #fff;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    font-family: 'Abhaya libre';
+  }
+  .dashboard{
+    padding: 0px;
+    background-color: #363740;
+  }
+  
+  .titleItem {
+    width: 100%;
+    color: #A4A6B3;
+    list-style: none;
+    font-size: larger;
+    padding: 20px;
+  }
+  ul {
+    padding: 0px;
+  }
+  .titleItem:hover {
+    background-color: #9FA2B4;
+    color: #fff;
+  }
+  .icon {
+    cursor: pointer;
+    margin-right: 5px;
+  }
+  
+  .itemDashboard {
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  
+  .formSearch {
+    border: 1px solid #CFCFCF;
+    border-radius: 20px;
+    align-items:center ;
+    height: 40px;
+  }
+  
+  .iconSearch {
+    margin-right: 10px;
+  }
+  
+  .formControl {
+    border: none;
+    border-radius: 20px;
+    /* margin: 0px; */
+    padding-right: 0px;
+  }
+  
+  .navbarBrand {
+    font-family: 'Abhaya libre';
+  }
+  .avaNow {
+    height: 40px;
+    margin-left: 10px;
+  }
+  
+  .formSearch2 {
+    background-color: #fff;
+    align-items: center;
+    border-radius: 8px;
+    border: 1px solid #CFCFCF;
+  }
+  
+  .iconSearch2 {
+    margin-left: 10px;
+  }
+  
+  .table {
+    border: 1px solid #CFCFCF;
+    border-radius: 10px !important;
+    text-align: center;
+  }
+  
+  .colorAdd {
+    color: blue !important;
+  }
+  
+  td {
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+  
+  .colorFooter {
+    background-color: #fff;
+  }
+  
+  .textShadow {
+    color: #7b8592 !important;
+  }
+  
+  .iconEdit {
+    cursor: pointer;
+    margin-right: 20px;
+  }
+  
+  .nav-infor {
+      background-color: #fff;
+      box-shadow: 0px 0px 40px 0px #dee1e6;;
+  }
+  
+  .fontNumber {
+      text-align: center;
+      font-family: 'Abhaya Libre';
+      color: #232D42;
+      margin: 10px 0px 0px 0px;
+      font-size: 1.2rem;
+  }
+  
+  .fontcate {
+      text-align: center;
+      font-family: 'Abhaya Libre';
+      color: #8A92A6;
+      font-size: 1rem;
+      margin:  0px 0px 10px 0px;
+  }
+  
+  .line {
+      height: 40px;
+      border: 1px solid #7b8592;
+  }
+  
+  .InforTitle {
+      margin-right: 70px;
+  }

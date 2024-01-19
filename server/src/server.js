@@ -8,8 +8,14 @@ const categoryRoute = require("./routes/category");
 const authRoute = require("./routes/auth");
 const orderRoute = require("./routes/order");
 const userRoute = require("./routes/user");
+const couponRoute = require("./routes/coupon");
+const analysisRoute = require("./routes/analysis");
+
+const productAdminRoute = require("./routes/Admin/product")
+const employeeAdminRoute = require('./routes/Admin/employee');
 
 const conecctToDB = require('./configs/db');
+const { countDocuments } = require("./models/Coupon");
 
 const app = express();
 dotenv.config();
@@ -19,7 +25,7 @@ conecctToDB();
 
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: ['http://localhost:3000', 'http://localhost:3001'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
 }));
@@ -30,6 +36,11 @@ app.use("/api/category", categoryRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/orders", orderRoute);
 app.use("/api/user", userRoute);
+app.use("/api/coupon", couponRoute);
+app.use("/api/analysis", analysisRoute);
+
+app.use("/api/admin/product", productAdminRoute);
+app.use("/api/admin/employee", employeeAdminRoute);
 
 app.listen(process.env.PORT || 8000, () => {
     console.log("Server is running...");

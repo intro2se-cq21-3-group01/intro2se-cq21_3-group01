@@ -1,0 +1,159 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@800&display=swap');
+
+.login-header h4 {
+    color      : #1C1C1C;
+    font-family: Smooch Sans;
+    font-size  : 120px;
+    font-weight: 700;
+    text-align : center;
+}
+
+.login-header p {
+    color      : #1C1C1C;
+    font-family: Poppins;
+    font-size  : 14px;
+    font-style : normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align : center;
+}
+
+.login-form {
+    text-align: center;
+}
+
+.login-form input {
+    width           : 360px;
+    height          : 50px;
+    border-radius   : 10px;
+    background-color: #C8C8C8;
+    border          : none;
+    margin          : 10px auto;
+    color           : #1C1C1C;
+    font-family     : Poppins;
+    font-size       : 12px;
+    font-style      : normal;
+    font-weight     : 400;
+    line-height     : normal;
+    padding         : 20px;
+}
+
+.login-form button {
+    margin-top   : 20px;
+    width        : 360px;
+    height       : 50px;
+    border-radius: 10px;
+    border       : none;
+}
+
+.login-form .forgot-password {
+    display        : block;
+    text-decoration: none;
+    color          : #2563EB;
+    font-family    : Poppins;
+    font-size      : 11px;
+    font-weight    : 400;
+}
+
+.login-form .btn-next {
+    background : #1C1C1C;
+    color      : #FFF;
+    font-family: Poppins;
+    font-size  : 12px;
+    font-weight: 700;
+}
+
+.login-form .login-other {
+    margin     : 25px 0 10px 0;
+    color      : #1C1C1C;
+    font-family: Poppins;
+    font-size  : 16px;
+}
+
+.login-form .btn-goolge,
+.login-form .btn-facebook {
+    color      : #1C1C1C;
+    font-family: Poppins;
+}
+
+.login-form p {
+    display: block;
+
+    margin-top : 25px;
+    color      : #9B9B9B;
+    font-family: Poppins;
+    font-size  : 14px;
+    font-weight: 400;
+}
+
+.login-form .register {
+    margin-left    : 5px;
+    text-decoration: none;
+    color          : #2563EB;
+    font-family    : Poppins;
+    font-size      : 14px;
+}
+
+.login-img {
+    width        : auto;
+    height       : 600px;
+    border-radius: 30px;
+    margin-top   : 40px;
+} */
+
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
+
+* {
+    margin    : 0;
+    padding   : 0;
+    box-sizing: border-box;
+}
+
+.header {
+    padding: 0 !important;
+}
+
+.navbar {
+    background-color: #D9D9D9 !important;
+}
+
+.navbar-brand {
+    font-family: 'Vanity' !important;
+    color      : #5653e8 !important;
+    font-size  : 27px !important;
+    font-weight: 600 !important;
+}
+
+.cart {
+    margin-top : 8px !important;
+    margin-left: 10px !important;
+}
+
+.slice {
+    position        : relative;
+    left            : 0;
+    top             : 10px;
+    width           : 2px;
+    height          : 20px;
+    background-color: #4743F1;
+    display         : block;
+    margin          : 0 15px 0 15px
+}
+
+.count-item {
+    background-color: black;
+    color           : white;
+    border-radius   : 50%;
+    width           : 25px;
+    height          : 25px;
+    text-align      : center;
+}
+
+.heightImg {
+    height: 100%;
+}
+
+.heightForm {
+    border-radius: 10px;
+    height       : 410px;
+}
