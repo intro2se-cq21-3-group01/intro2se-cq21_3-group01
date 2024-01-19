@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const User = require("../models/User");
+const Employee = require("../models/Employee");
 
 const authMiddleware = {
     generateAccessToken: (user) => {
@@ -36,6 +36,7 @@ const authMiddleware = {
 
             return decoded;
         } catch (error) {
+            console.error("Decoding error:", error.message);
             return null;
         }
     },
@@ -48,39 +49,11 @@ const authMiddleware = {
             return null;
         }
     },
-    requestRefreshToken: async (req, res) => {
-        //Take refresh token from user
-        const refreshToken = req.cookies.refreshToken;
-        //Send error if token is not valid
-        if (!refreshToken) return res.status(401).json("You're not authenticated");
-        if (!refreshTokens.includes(refreshToken)) {
-            return res.status(403).json("Refresh token is not valid");
-        }
-        jwt.verify(refreshToken, process.env.JWT_REFRESH_KEY, (err, user) => {
-            if (err) {
-                console.log(err);
-            }
-            refreshTokens = refreshTokens.filter((token) => token !== refreshToken);
-            //create new access token, refresh token and send to user
-            const newAccessToken = authController.generateAccessToken(user);
-            const newRefreshToken = authController.generateRefreshToken(user);
-            refreshTokens.push(newRefreshToken);
-            res.cookie("refreshToken", refreshToken, {
-                httpOnly: true,
-                secure: false,
-                path: "/",
-                sameSite: "strict",
-            });
-            res.status(200).json({
-                accessToken: newAccessToken,
-                refreshToken: newRefreshToken,
-            });
-        });
-    },
     checkPermissionStaff: async (req, res, next) => {
         try {
             const authorizationHeader = req.headers.authorization;
 
+            console.log("acc2",authorizationHeader);
             if (!authorizationHeader || !authorizationHeader.startsWith('Bearer ')) {
                 return res.status(403).json({
                     success: false,
@@ -99,9 +72,11 @@ const authMiddleware = {
             }
 
             const userId = decodedToken.id;
-            const user = await User.findOne({ _id: userId });
+            const employee = await Employee.findOne({ _id: userId });
 
-            if (!user || user.role !== "STAFF") {
+            console.log(employee);
+            console.log(employee.isAdmin);
+            if (!employee || employee.isAdmin === true) {
                 return res.status(403).json({
                     success: false,
                     message: "Only staffs are allowed to perform this action!"
@@ -109,7 +84,7 @@ const authMiddleware = {
             }
 
             // Attach user information to the request for future middleware/routes to use if needed
-            req.currentUser = user;
+            req.currentUser = employee;
 
             // If the user is an STAFF, continue with the next middleware/route
             next();
@@ -125,7 +100,7 @@ const authMiddleware = {
     checkPermissionAdmin: async (req, res, next) => {
         try {
             const authorizationHeader = req.headers.authorization;
-
+            console.log("acc1",authorizationHeader);
             if (!authorizationHeader || !authorizationHeader.startsWith('Bearer ')) {
                 return res.status(403).json({
                     success: false,
@@ -144,9 +119,12 @@ const authMiddleware = {
             }
 
             const userId = decodedToken.id;
-            const user = await User.findOne({ _id: userId });
+            const employee = await Employee.findOne({ _id: userId });
 
-            if (!user || user.role !== "ADMIN") {
+            console.log(employee);
+            console.log(employee.isAdmin);
+
+            if (!employee || employee.isAdmin === false) {
                 return res.status(403).json({
                     success: false,
                     message: "Only admins are allowed to perform this action!"
@@ -154,7 +132,7 @@ const authMiddleware = {
             }
 
             // Attach user information to the request for future middleware/routes to use if needed
-            req.currentUser = user;
+            req.currentUser = employee;
 
             // If the user is an ADMIN, continue with the next middleware/route
             next();
@@ -166,7 +144,8 @@ const authMiddleware = {
                 error: error.message
             });
         }
-    }
+
+    },
 }
 
 module.exports = authMiddleware;

@@ -1,17 +1,17 @@
 const paypalController = require("../controllers/paypalController");
 const orderController = require("../controllers/orderController");
-const authMiddleware = require("../middleware/authMiddleware");
+const authMiddleware = require("../middleware/AdminMiddleware");
 
 const router = require("express").Router();
 
 // GET ORDER
-router.get("/filter", orderController.getAllOrders);
+router.get("/filter",authMiddleware.verifyToken, orderController.getAllOrders);
 
 // CREATE ORDER
 router.post("/", orderController.createOrder);
 
 // DELETE ORDER BY ID
-router.delete('/:orderId', orderController.deleteOrderById);
+router.delete('/:orderId',authMiddleware.verifyToken, orderController.deleteOrderById);
 
 // UPDATE ORDER BY ID
 router.put("/update/:orderId", orderController.updateOrderById);
@@ -20,7 +20,7 @@ router.put("/update/:orderId", orderController.updateOrderById);
 router.get("/", orderController.getOrdersByUser);
 
 // CHANGE STATUS ORDER
-router.put("/change-status", orderController.changeStatusOrder);
+router.put("/change-status",authMiddleware.verifyToken, orderController.changeStatusOrder);
 
 
 // CREATE PAYMENT

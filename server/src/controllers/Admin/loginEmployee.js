@@ -12,6 +12,7 @@ const LoginEmployee = {
                 isAdmin: user.isAdmin,
             },
             process.env.JWT_ACCESS_KEY,
+            { expiresIn: "1d" }
         );
     },
 
