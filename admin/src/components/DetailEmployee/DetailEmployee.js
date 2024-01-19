@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import customAxios from "../../axios/customAxios";
 import styles from './DetailEmployee.module.css';
 
 const EmployeeDetail = (props) => {
@@ -12,7 +12,7 @@ const EmployeeDetail = (props) => {
     useEffect(() => {
         const getEmployee = async () => {
             try {
-                const response = await axios.get(`http://localhost:8000/api/admin/employee/${id}`);
+                const response = await customAxios.get(`/api/admin/employee/${id}`);
 
                 if (response.data.success) {
                     setEmployee(response.data.data);

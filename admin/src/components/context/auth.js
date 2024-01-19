@@ -5,7 +5,7 @@ export const AuthContext = createContext();
 
 const AuthContextProvider = (props) => {
     const [jwt, setJWT] = useState(() => {
-        const storedJWT = localStorage.getItem('jwt');
+        const storedJWT = localStorage.getItem('accessToken');
         return storedJWT ? JSON.parse(storedJWT) : null;
     });
 
@@ -22,7 +22,7 @@ const AuthContextProvider = (props) => {
     }, []);
 
     const addLocal = (jwt, user) => {
-        localStorage.setItem("jwt", JSON.stringify(jwt));
+        localStorage.setItem("accessToken", JSON.stringify(jwt));
         localStorage.setItem("user", JSON.stringify(user));
 
         setJWT(jwt);
@@ -30,7 +30,7 @@ const AuthContextProvider = (props) => {
     };
 
     const logOut = () => {
-        localStorage.removeItem("jwt");
+        localStorage.removeItem("accessToken");
         localStorage.removeItem("user");
 
         setJWT(null);

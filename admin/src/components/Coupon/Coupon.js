@@ -4,57 +4,58 @@ import queryString from 'query-string'
 import customAxios from "../../axios/customAxios";
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faHandPeace, faArrowDownWideShort, faPlus, faPen, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import {faHandPeace, faPlus, faPen, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
 
-import styles from './Employee.module.css';
+import styles from './Coupon.module.css';
 
 import Search from "../Share/Search";
 import Pagination from "../Share/Pagination";
 import { AuthContext } from '../context/auth'
-const EmployeeList = (props) => {
+const CouponList = (props) => {
 
-    const [employees, setEmployees] = useState([]);
+    const [coupons, setCoupons] = useState([]);
+    const [totalPage, setTotalPage] = useState("")
+
     const { user , logOut} = useContext(AuthContext);
+
     const navigate = useNavigate();
-    console.log(employees);
+
     const [filter, setFilter] = useState({
         page: '1',
-        limit: '8',
+        limit: '6',
         search: '',
         status: true,
-        sort: false,
     })
-    const [totalPage, setTotalPage] = useState("")
+    
     
     const memoizedFilter = useMemo(() => filter, [filter]);
 
     useEffect(() => {
         const query = '?' + queryString.stringify(memoizedFilter);
-        const getAllEmployees = async () => {
+        const getAllCoupons = async () => {
 
-            if(user.isAdmin !== true){
-                navigate("/")
-            }
             try {
-                const response = await customAxios.get(`/api/admin/employee/${query}`);
-                setEmployees(response.data.data);
+                if(user.isAdmin === true){
+                    navigate("/")
+                }
+                const response = await customAxios.get(`/api/admin/coupon/${query}`);
+                setCoupons(response.data.data);
                 setTotalPage(response.data.totalPage)
                 console.log("totalPage", response.data.totalPage);
             } catch (error) {
                 console.error("Error fetching employee data:", error);
             }
         }
-        getAllEmployees();
+        getAllCoupons();
     }, [memoizedFilter, navigate, user]);
 
 
-    const handleDeleteEmployee = async (user) => {
+    const handleDeleteCoupon = async (coupon) => {
         try {
 
-            const id = String(user._id);
-            console.log(user._id);
-            const response = await customAxios.get(`/api/admin/employee/delete/${id}`);
+            const id = String(coupon._id);
+            const response = await customAxios.get(`/api/admin/coupon/delete/${id}`);
             if (response.data.success) {
                 toast.success("Delete successfully !");
                 setFilter({
@@ -82,13 +83,6 @@ const EmployeeList = (props) => {
         })
     }
 
-    const sortByName = () => {
-        setFilter({
-            ...filter,
-            sort: !filter.sort,
-        })
-    }
-
     return (
         <>
             <div className={`col-9  ${styles.col9}`}>
@@ -102,9 +96,8 @@ const EmployeeList = (props) => {
                 </nav>
                 <div className="d-flex mt-3 ms-5 justify-content-between">
                     <div className="">
-                        <button type="button" className="btn btn-light" onClick={sortByName}><FontAwesomeIcon icon={faArrowDownWideShort} className={styles["icon"]} />Filters</button>
-                        <Link to="/employee/add">
-                            <button className="btn btn-primary"><FontAwesomeIcon icon={faPlus} className={styles["icon"]} />Add Employee</button>
+                        <Link to="/coupon/add">
+                            <button className="btn btn-primary"><FontAwesomeIcon icon={faPlus} className={styles["icon"]} />Add Coupon</button>
                         </Link>
                     </div>
                     <Search handlerSearch={handlerSearch} />
@@ -114,20 +107,20 @@ const EmployeeList = (props) => {
                         <thead>
                             <tr>
                                 <th className={`table-secondary ${styles.textShadow}`} scope="col">Name</th>
-                                <th className={`table-secondary ${styles.textShadow}`} scope="col">Email</th>
-                                <th className={`table-secondary ${styles.textShadow}`} scope="col">Phone</th>
+                                <th className={`table-secondary ${styles.textShadow}`} scope="col">Discount</th>
+                                <th className={`table-secondary ${styles.textShadow}`} scope="col">Quantity</th>
                                 <th className={`table-secondary ${styles.textShadow}`} scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {employees?.map((user) => {
+                            {coupons?.map((coupon) => {
                                 return (
-                                    <tr key={user._id}>
-                                        <td className={styles["tdEdit"]}><Link className={styles["linkEdit"]} to={`/employee/${user._id}`}>{user.fullname}</Link></td>
-                                        <td className={styles["tdEdit"]}>{user.email}</td>
-                                        <td className={styles["tdEdit"]}>{user.phone}</td>
-                                        <td><Link to={`/employee/update/${user._id}`}><FontAwesomeIcon icon={faPen} className={styles["iconEdit"]} /></Link>
-                                            <FontAwesomeIcon icon={faTrashCan} className={styles["icon"]} onClick={() => handleDeleteEmployee(user)} />
+                                    <tr key={coupon._id}>
+                                        <td className={styles["tdEdit"]}>{coupon.code}</td>
+                                        <td className={styles["tdEdit"]}>{coupon.discount}</td>
+                                        <td className={styles["tdEdit"]}>{coupon.quantity}</td>
+                                        <td><Link to={`/coupon/update/${coupon._id}`}><FontAwesomeIcon icon={faPen} className={styles["iconEdit"]} /></Link>
+                                            <FontAwesomeIcon icon={faTrashCan} className={styles["icon"]} onClick={() => handleDeleteCoupon(coupon)} />
                                         </td>
                                         <td></td>
                                     </tr>
@@ -142,5 +135,5 @@ const EmployeeList = (props) => {
     );
 }
 
-export default EmployeeList;
+export default CouponList;
 

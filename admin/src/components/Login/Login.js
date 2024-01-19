@@ -56,13 +56,12 @@ function Login(props) {
             }
             else {
                 addLocal(response.data.jwt, response.data.user)
-                navigate("/employee2")
+                navigate("/order")
                 console.log("Nhân viên");
             }
 
         }
         else
-            console.log("loi");
         setValidationMsg({ api: response.data.message })
         console.log(response.data.message);
     }
@@ -72,7 +71,7 @@ function Login(props) {
             if (user.isAdmin) {
                 navigate("/employee");
             } else {
-                navigate("/employee2");
+                navigate("/order");
             }
         }
     }, [jwt, user, navigate]);
