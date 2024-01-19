@@ -18,12 +18,6 @@ const Checkout = (props) => {
     const [note, setNote] = useState('');
     const [paymentMethod, setPaymentMethod] = useState('cash');
 
-    const isPhoneNumberValid = (phoneNumber) => {
-        // Vietnamese phone number format: +84xxxxxxxxx or 0xxxxxxxxx
-        const phoneRegex = /^(?:\+84|0)(?:\d{9,10})$/;
-        return phoneRegex.test(phoneNumber);
-    };
-
     const { cartItems, discountCode, discount,
         setDiscount, setDiscountCode,
         grandTotalPrice, clearCart } = useCart();
@@ -53,11 +47,6 @@ const Checkout = (props) => {
     const handlePayByCash = async (e) => {
         if (!name || !phone || !address) {
             toast.error("Please fill in all required fields.");
-            return;
-        }
-
-        if (!isPhoneNumberValid(phone)) {
-            toast.error("Please enter a valid Vietnamese phone number.");
             return;
         }
 
