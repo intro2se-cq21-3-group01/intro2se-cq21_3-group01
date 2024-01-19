@@ -81,8 +81,8 @@ const Checkout = (props) => {
     return (
         <div className="container">
             <main>
-                <div className="py-5 text-center">
-                    <h2 style={{ fontWeight: '1200' }}>CHECKOUT FORM</h2>
+                <div className="mt-4 mb-3 text-center">
+                    <h2 style={{ fontWeight: '1000' }}>CHECKOUT FORM</h2>
                 </div>
 
                 <div className="row g-5 d-flex justify-space-around">

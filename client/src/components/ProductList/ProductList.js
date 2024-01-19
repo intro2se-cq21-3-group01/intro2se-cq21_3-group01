@@ -71,7 +71,7 @@ const ProductList = (props) => {
     return (
         <>
             <div className="product-list">
-                <div className="container mt-3">
+                <div className="container" style={{ marginTop: '37px' }}>
                     <div className="row">
                         {filteredProducts.map(product => (
                             <div key={product._id} className="col-4">

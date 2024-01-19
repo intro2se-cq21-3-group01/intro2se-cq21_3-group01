@@ -11,7 +11,7 @@
 .product-header h3 {
     color               : #000;
     font-variant-numeric: lining-nums tabular-nums;
-    font-family: 'Quando', Tahoma, Geneva, Verdana, sans-serif !important;
+    font-family         : Source Han Serif CN;
     font-size           : 30px;
     font-weight         : 700;
 }
@@ -38,14 +38,14 @@
 .product-name {
     color               : #000;
     font-variant-numeric: lining-nums tabular-nums;
-    font-family: 'Quando', Tahoma, Geneva, Verdana, sans-serif !important;
+    font-family         : Quicksand;
     font-size           : 30px;
     font-weight         : 700;
 }
 
 .product-price {
     color        : #E00000;
-    font-family: 'Quando', Tahoma, Geneva, Verdana, sans-serif !important;
+    font-family  : Quicksand;
     font-size    : 20px;
     font-weight  : 700;
     margin-bottom: 50px;
@@ -78,7 +78,7 @@
 }
 
 .product-add-cart button {
-    font-family: 'Quando', Tahoma, Geneva, Verdana, sans-serif !important;
+    font-family  : Quicksand;
     width        : 600px;
     height       : 60px;
     border-radius: 10px;
@@ -90,7 +90,7 @@
 }
 
 .product-buy button {
-    font-family: 'Quando', Tahoma, Geneva, Verdana, sans-serif !important;
+    font-family  : Quicksand;
     width        : 600px;
     height       : 60px;
     border-radius: 10px;
@@ -111,14 +111,14 @@
 
 .product-des h4 {
     color      : #000;
-    font-family: 'Quando', Tahoma, Geneva, Verdana, sans-serif !important;
+    font-family: Quicksand;
     font-size  : 30px;
     font-weight: 700;
 }
 
 .product-des p {
     color      : #000;
-    font-family: 'Quando', Tahoma, Geneva, Verdana, sans-serif !important;
+    font-family: Inter;
     font-size  : 16px;
     font-weight: 400;
 }

@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import customAxios from '../../axios/customAxios';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { toast } from 'react-toastify';
 
 import styles from './Register.module.css';
@@ -70,17 +68,6 @@ const Register = () => {
                                 onChange={(e) => { setPassword(e.target.value) }}
                             />
                             <button className={styles['btn-next']} onClick={handleRegister}>NEXT</button>
-
-                            <p className={styles['register-other']}><b>Login</b> with Others</p>
-
-                            <button className={styles['btn-google']}>
-                                <FontAwesomeIcon icon={faGoogle} className='me-2' />
-                                Login in with <b>Google</b>
-                            </button>
-                            <button className={styles['btn-facebook']}>
-                                <FontAwesomeIcon icon={faFacebook} className='me-2' />
-                                Login in with <b>Facebook</b>
-                            </button>
 
                             <p> Already have an account?
                                 <a className={styles['register']} href='/login'>Sign in</a>

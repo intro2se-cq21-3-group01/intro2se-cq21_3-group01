@@ -13,7 +13,7 @@
 .similar-header h3 {
     color               : #000;
     font-variant-numeric: lining-nums tabular-nums;
-    font-family: 'Quando', Tahoma, Geneva, Verdana, sans-serif !important;
+    font-family         : Source Han Serif CN;
     font-size           : 30px;
     font-weight         : 700;
 }
@@ -47,7 +47,7 @@
 .product-name {
     color      : #000;
     text-align : center;
-    font-family: 'Quando', Tahoma, Geneva, Verdana, sans-serif !important;
+    font-family: Quicksand;
     font-size  : 25px;
     font-weight: 900;
     margin     : 15px 0;
@@ -56,7 +56,7 @@
 .product-price {
     color      : #E00000;
     text-align : center;
-    font-family: 'Quando', Tahoma, Geneva, Verdana, sans-serif !important;
+    font-family: Quicksand;
     font-size  : 20px;
     font-weight: 500;
 }
