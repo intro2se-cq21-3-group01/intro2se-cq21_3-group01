@@ -96,7 +96,7 @@ const ManageOrder = () => {
             <div className={`col-9  ${styles.col9}`}>
                 <nav className={`navbar ${styles.navbarEdit}`}>
                     <div className="container d-flex">
-                        <h2 className={`navbar-brand  ${styles.navbarBrand}`}>Hello,{user.fullname}<FontAwesomeIcon icon={faHandPeace} /></h2>
+                        <h2 className={`navbar-brand  ${styles.navbarBrand}`}>Hello,{user.username}<FontAwesomeIcon icon={faHandPeace} /></h2>
                         <div className="d-flex">
                             <button className="btn btn-dark me-5" onClick={() => { logOut() }}>Log out</button>
                         </div>

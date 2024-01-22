@@ -5,7 +5,7 @@ const dotenv = require("dotenv");
 
 const productRoute = require("./routes/product");
 const categoryRoute = require("./routes/category");
-const authRoute = require("./routes/auth");
+//const authRoute = require("./routes/auth");
 const orderRoute = require("./routes/order");
 const userRoute = require("./routes/user");
 const couponRoute = require("./routes/coupon");
@@ -15,14 +15,22 @@ const productAdminRoute = require("./routes/Admin/product")
 const employeeAdminRoute = require('./routes/Admin/employee');
 const couponsAdminRoute = require('./routes/Admin/coupon');
 
+const authRouteGoogle = require('./routes/authRoute');
+require('./passport.js')
+
 const conecctToDB = require('./configs/db');
-const { countDocuments } = require("./models/Coupon");
+//const { countDocuments } = require("./models/Coupon");
 
 const app = express();
 dotenv.config();
 
 //CONNECT DATABASE
 conecctToDB();
+// app.use(express.json({ limit: '10mb' }));
+// app.use(express.urlencoded({ limit: '10mb', extended: true }));
+
+//app.use(express.json());
+//app.use(express.urlencoded({ extended : true}))
 
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(cors({
@@ -34,7 +42,7 @@ app.use(cors({
 //ROUTES
 app.use("/api/product", productRoute);
 app.use("/api/category", categoryRoute);
-app.use("/api/auth", authRoute);
+//app.use("/api/auth", authRoute);
 app.use("/api/orders", orderRoute);
 app.use("/api/user", userRoute);
 app.use("/api/coupon", couponRoute);
@@ -43,6 +51,9 @@ app.use("/api/analysis", analysisRoute);
 app.use("/api/admin/product", productAdminRoute);
 app.use("/api/admin/employee", employeeAdminRoute);
 app.use("/api/admin/coupon", couponsAdminRoute);
+
+//app.use('/', (req, res)  => { res.send('app run') });
+app.use('/api/auth', authRouteGoogle);
 
 app.listen(process.env.PORT || 8000, () => {
     console.log("Server is running...");

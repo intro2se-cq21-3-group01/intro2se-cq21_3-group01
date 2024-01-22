@@ -23,6 +23,7 @@ import EditCategory from "./components/EditCategory/EditCategory";
 import CouponList from "./components/Coupon/Coupon";
 import AddCoupon from "./components/AddCoupon/AddCoupon";
 import UpdateCoupon from "./components/EditCoupon/EditCoupon";
+import LoginSuccess from "./components/LoginSuccess";
 
 const App = () => {
   return (
@@ -33,6 +34,8 @@ const App = () => {
           <div className={`row ${styles.rowEdit}`}>
             <Menu />
             <Routes>
+              
+              <Route path="/login-success/:userId" element={<LoginSuccess />} />
               <Route path="/" element={<LoginPage />} />
               <Route path="/employee" element={<EmployeePage />} />
               <Route path="/employee/:id" element={<DetailEmployee />} />
@@ -52,6 +55,8 @@ const App = () => {
               <Route path="/coupon" element={<CouponList />} />
               <Route path="/coupon/add" element={<AddCoupon />} />
               <Route path="/coupon/update/:id" element={<UpdateCoupon />} />
+
+              
             </Routes>
             {/* Hiển thị thông báo */}
             <ToastContainer

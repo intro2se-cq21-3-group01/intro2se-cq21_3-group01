@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from 'axios';
+import customAxios from '../../axios/customAxios';
 import Banner01 from '../../assets/imgs/Banner01.png'
 import Banner02 from '../../assets/imgs/Banner02.png'
 
@@ -44,13 +45,14 @@ function Login(props) {
             password: password
         }
 
-        const response = await axios.post('http://localhost:8000/api/admin/employee/login', user, { withCredentials: true, });
+        const response = await customAxios.post('/api/admin/employee/login', user, { withCredentials: true, });
         console.log(response.data);
 
         if (response.data.success) {
             console.log(response.data.user.fullname);
             if (response.data.user.isAdmin) {
                 addLocal(response.data.jwt, response.data.user)
+                //customAxios.defaults.headers.common['Authorization'] = `Bearer ${response.data.jwt}`;
                 console.log("Admin");
                 navigate("/employee")
             }
@@ -62,10 +64,14 @@ function Login(props) {
 
         }
         else
-        setValidationMsg({ api: response.data.message })
+            setValidationMsg({ api: response.data.message })
         console.log(response.data.message);
     }
 
+    const handleLoginGoogle = () => {
+        window.open('http://localhost:8000/api/auth/google', '_self')
+    }
+    
     useEffect(() => {
         if (jwt && user) {
             if (user.isAdmin) {
@@ -106,6 +112,13 @@ function Login(props) {
                                             <p className="form-text text-danger">{validationMsg.password}</p>
                                         </div>
                                     </div>
+                                    <button
+                                        type="button"
+                                        className="btn btn-danger"
+                                        onClick={() => handleLoginGoogle()}
+                                    >
+                                        Google
+                                    </button>
                                     <div className="col-lg-12 text-center">
                                         <button type="submit" className="btn btn-block btn-dark">Sign In</button>
                                     </div>

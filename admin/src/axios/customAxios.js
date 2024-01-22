@@ -8,16 +8,25 @@ const customAxios = axios.create({
 
 customAxios.defaults.withCredentials = true;
 
-if (typeof localStorage !== 'undefined') {
-    const accessToken = localStorage.getItem('accessToken');
-    const storedJWT = JSON.parse(accessToken);
-    if (storedJWT) {
-        customAxios.defaults.headers.common['authorization'] = `Bearer ${storedJWT}`;
-    }
+// if (typeof localStorage !== 'undefined') {
+//     const accessToken = localStorage.getItem('accessToken');
+//     const storedJWT = JSON.parse(accessToken);
+//     if (storedJWT) {
+//         customAxios.defaults.headers.common['Authorization'] = `Bearer ${storedJWT}`;
+//     }
 
-}
+// }
 
 customAxios.interceptors.request.use(function (config) {
+
+    if (typeof localStorage !== 'undefined') {
+        const accessToken = localStorage.getItem('accessToken');
+        const storedJWT = JSON.parse(accessToken);
+        if (storedJWT) {
+            config.headers['Authorization'] = `Bearer ${storedJWT}`;
+        }
+    
+    }
     // Do something before request is sent
     return config;
 }, function (error) {

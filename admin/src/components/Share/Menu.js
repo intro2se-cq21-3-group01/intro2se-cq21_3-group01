@@ -10,6 +10,7 @@ import styles from "./Menu.module.css";
 function Menu() {
     const navigate = useNavigate();
     const { user, jwt } = useContext(AuthContext);
+    //console.log("Menu", user.isAdmin);
     const menu = [
         {
             item: "Employee Management",

@@ -67,6 +67,8 @@ const employeeController = {
 
     addEmployee: async (req, res) => {
       try {
+        console.log("zô");
+        console.log(req.body);
         const salt = await bcrypt.genSalt(10);
         const hashed = await bcrypt.hash(req.body.password, salt);
         const newEmployee = await new Employee({
